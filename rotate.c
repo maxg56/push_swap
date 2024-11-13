@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:02:50 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/13 13:09:42 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/13 17:46:41 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ void	rotate(t_pslst *stack)
 	t_pslst	*tmp;
 	t_pslst	*last;
 
-	if (!stack || !stack->next)
-		return ;
-	tmp = stack;
-	last = stack;
+	tmp = *stack;
+	last = *stack;
 	while (last->next)
 		last = last->next;
-	stack = stack->next;
+	stack = *stack->next;
 	tmp->next = NULL;
 	last->next = tmp;
 }
