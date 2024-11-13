@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:18:43 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/13 13:26:46 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:11:09 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,12 @@ void	push_swap(t_pslst *stack_a, t_pslst *stack_b)
 	{
 		if (stack_a->nb > stack_a->next->nb)
 			do_sa(stack_a);
+		if ()
 	}
+
+}
+
+void 	The_Turk_Algorithm(t_pslst *stack_a, t_pslst *stack_b)
+{
+	
 }
