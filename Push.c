@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   Push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 12:18:43 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/13 13:26:46 by mgendrot         ###   ########.fr       */
+/*   Created: 2024/11/13 12:55:11 by mgendrot          #+#    #+#             */
+/*   Updated: 2024/11/13 12:58:19 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap(t_pslst *stack_a, t_pslst *stack_b)
+void	push(t_pslst *stack_a, t_pslst *stack_b)
 {
-	if (!stack_a  || stack_a == 0)
+	t_pslst	*tmp;
+
+	tmp = stack_b;
+	stack_b = stack_b->next;
+	tmp->next = stack_a;
+	stack_a = tmp;
+}
+
+void	do_pa(t_pslst *stack_a, t_pslst *stack_b)
+{
+	if (!stack_b)
 		return ;
-	if (stack_a->next)
-	{
-		if (stack_a->nb > stack_a->next->nb)
-			do_sa(stack_a);
-	}
+	push(stack_a, stack_b);
+	ft_putstr_fd("pa\n", 1);
+}
+
+void	do_pb(t_pslst *stack_a, t_pslst *stack_b)
+{
+	if (!stack_a)
+		return ;
+	push(stack_b, stack_a);
+	ft_putstr_fd("pb\n", 1);
 }
