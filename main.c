@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Push.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 12:55:11 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/14 16:46:08 by mgendrot         ###   ########.fr       */
+/*   Created: 2024/11/14 13:57:35 by mgendrot          #+#    #+#             */
+/*   Updated: 2024/11/14 17:24:47 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_list *stack_a, t_list *stack_b)
-{
-	t_list	*tmp;
 
-	tmp = stack_b;
-	stack_b = stack_b->next;
-	tmp->next = stack_a;
-	stack_a = tmp;
-}
-
-void	do_pa(t_list *stack_a, t_list *stack_b)
+int main(void)
 {
-	if (!stack_b)
-		return ;
-	push(stack_a, stack_b);
-	ft_putstr_fd("pa\n", 1);
-}
+	t_list *stack_a;
+	t_list *stack_b;
 
-void	do_pb(t_list *stack_a, t_list *stack_b)
-{
-	if (!stack_a)
-		return ;
-	push(stack_b, stack_a);
-	ft_putstr_fd("pb\n", 1);
+	stack_a = ft_lstnew((void *)1);
+	stack_b = NULL;
+	push_swap(stack_a, stack_b);
+	ft_
+	return 0;
 }

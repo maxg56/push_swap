@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:36:31 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/13 13:25:25 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:53:05 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,30 @@
 
 # include "libft/include/libft.h"
 
-typedef struct s_pslst
-{
-	int				nb;
-	struct s_pslst	*next;
-}					t_pslst;
-
 // swap.c
-void	swap(t_pslst *stack);
-void	do_sa(t_pslst *stack_a);
-void	do_sb(t_pslst *stack_b);
-void	do_ss(t_pslst *stack_a, t_pslst *stack_b);
+void	swap(t_list *stack);
+void	do_sa(t_list *stack_a);
+void	do_sb(t_list *stack_b);
+void	do_ss(t_list *stack_a, t_list *stack_b);
 
 // push.c
-void	push(t_pslst *stack_a, t_pslst *stack_b);
-void	do_pa(t_pslst *stack_a, t_pslst *stack_b);
-void	do_pb(t_pslst *stack_a, t_pslst *stack_b);
+void	push(t_list *stack_a, t_list *stack_b);
+void	do_pa(t_list *stack_a, t_list *stack_b);
+void	do_pb(t_list *stack_a, t_list *stack_b);
 
 // rotate.c
-void	rotate(t_pslst *stack);
-void	do_ra(t_pslst *stack_a);
-void	do_rb(t_pslst *stack_b);
-void	do_rr(t_pslst *stack_a, t_pslst *stack_b);
+void	rotate(t_list *stack);
+void	do_ra(t_list *stack_a);
+void	do_rb(t_list *stack_b);
+void	do_rr(t_list *stack_a, t_list *stack_b);
 
 // reverse_rotate.c
-void	reverse_rotate(t_pslst *stack);
-void	do_rra(t_pslst *stack_a);
-void	do_rrb(t_pslst *stack_b);
-void	do_rrr(t_pslst *stack_a, t_pslst *stack_b);
+void	reverse_rotate(t_list *stack);
+void	do_rra(t_list *stack_a);
+void	do_rrb(t_list *stack_b);
+void	do_rrr(t_list *stack_a, t_list *stack_b);
 
 // push_swap.c
-void	push_swap(t_pslst *stack_a, t_pslst *stack_b);
+void	push_swap(t_list *stack_a, t_list *stack_b);
 
 #endif
