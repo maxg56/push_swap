@@ -6,7 +6,7 @@
 #    By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/08 13:59:30 by mgendrot          #+#    #+#              #
-#    Updated: 2024/11/14 16:18:02 by mgendrot         ###   ########.fr        #
+#    Updated: 2024/11/14 17:44:54 by mgendrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ TERM_CLEAR_LINE		=   \033[2K\r
 #                                                                              #
 # **************************************************************************** #
 
-FTPRINT       	=   push_swap Push swap rotate reverse_rotate 
+FTPRINT       	=   push_swap Push swap rotate reverse_rotate main
 
 SRCS 		= 	$(addsuffix .c, $(FTPRINT))
 # **************************************************************************** #
