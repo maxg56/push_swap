@@ -6,13 +6,11 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:25:01 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/14 16:56:15 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:35:19 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"	
-
-#include "push_swap.h"
 
 void	swap(t_list *stack)
 {

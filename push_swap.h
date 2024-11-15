@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:36:31 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/14 16:53:05 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:25:12 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,8 @@ void	do_rrr(t_list *stack_a, t_list *stack_b);
 
 // push_swap.c
 void	push_swap(t_list *stack_a, t_list *stack_b);
-
+void	smolr_sort(t_list *stack);
+void	big_sort(t_list *stack_a, t_list *stack_b);
+void	sxe_sort(t_list *stack_a, t_list *stack_b, int len);
+int		is_sorted(t_list *stack);
 #endif

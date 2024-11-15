@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:55:11 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/14 16:46:08 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:32:23 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,10 @@ void	push(t_list *stack_a, t_list *stack_b)
 
 void	do_pa(t_list *stack_a, t_list *stack_b)
 {
-	if (!stack_b)
-		return ;
-	push(stack_a, stack_b);
-	ft_putstr_fd("pa\n", 1);
+	(push(stack_a, stack_b), ft_putstr_fd("pa\n", 1));
 }
 
 void	do_pb(t_list *stack_a, t_list *stack_b)
 {
-	if (!stack_a)
-		return ;
-	push(stack_b, stack_a);
-	ft_putstr_fd("pb\n", 1);
+	(push(stack_b, stack_a), ft_putstr_fd("pb\n", 1));
 }
