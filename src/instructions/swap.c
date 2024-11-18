@@ -6,24 +6,22 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:25:01 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/15 11:35:19 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:44:57 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"	
 
-void	swap(t_list *stack)
+static void	swap(t_stack *stack)
 {
 	int	tmp;
 
-	if (!stack || !stack->next)
-		return ;
-	tmp = *(int *)stack->content;
-	*(int *)stack->content = *(int *)stack->next->content;
-	*(int *)stack->next->content = tmp;
+	tmp = stack->nb;
+	stack->nb = *(int *)stack->next->nb;
+	stack->next->nb = tmp;
 }
 
-void	do_sa(t_list *stack_a)
+void	do_sa(t_stack *stack_a)
 {
 	if (!stack_a || !stack_a->next)
 		return ;
@@ -31,7 +29,7 @@ void	do_sa(t_list *stack_a)
 	ft_putstr_fd("sa\n", 1);
 }
 
-void	do_sb(t_list *stack_b)
+void	do_sb(t_stack *stack_b)
 {
 	if (!stack_b || !stack_b->next)
 		return ;

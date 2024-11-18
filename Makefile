@@ -6,7 +6,7 @@
 #    By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/08 13:59:30 by mgendrot          #+#    #+#              #
-#    Updated: 2024/11/14 17:44:54 by mgendrot         ###   ########.fr        #
+#    Updated: 2024/11/18 17:32:42 by mgendrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 
 NAME		= push_swap
 NAMETESTS	= tests.out
-LIBFT_DIR		= libft/
-INCLUDES	= push_swap.h
+INCLUDEs		= include
+LIBFT_DIR	= libft/
 
 CC			= cc 
 CFLAGS		= -Wall -Wextra -Werror 
@@ -47,10 +47,13 @@ TERM_CLEAR_LINE		=   \033[2K\r
 #                                   Sources                                    #
 #                                                                              #
 # **************************************************************************** #
+SRC_DIR = src/
+INSTRUCTIONS_DIR = src/instructions/
+FTPRINT       	=   push_swap  main
+INSTRUCTIONS	= 	swap push rotate reverse_rotate
 
-FTPRINT       	=   push_swap Push swap rotate reverse_rotate main
-
-SRCS 		= 	$(addsuffix .c, $(FTPRINT))
+SRCS 		+= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FTPRINT)))
+SRCS 		+= 	$(addprefix $(INSTRUCTIONS_DIR), $(addsuffix .c, $(INSTRUCTIONS)))
 # **************************************************************************** #
 #                                                                              #
 #                                   OBJS                                       #
@@ -59,7 +62,7 @@ SRCS 		= 	$(addsuffix .c, $(FTPRINT))
 
 OBJS_DIR	=	obj/
 OBJS 		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(FTPRINT)))
-
+OBJS 		+= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(INSTRUCTIONS)))
 # **************************************************************************** #
 #                                                                              #
 #                             progress_update                                  #
