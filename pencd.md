@@ -23,3 +23,25 @@ Algorithmes de tri spécifiques à push_swap : Pour le projet push_swap de l'Eco
 - **Tri par déplacement optimisé** : avec des opérations de swap, rotate, et reverse_rotate pour minimiser le nombre de coups.
 
 Ces algorithmes sont adaptés en fonction des contraintes de mémoire et d'optimisation du nombre d'opérations, en particulier pour des projets avec des exigences spécifiques comme push_swap.
+{
+    "security.workspace.trust.untrustedFiles": "newWindow",
+    "editor.insertSpaces": false,
+    "editor.comments.insertSpace": false,
+    "editor.tabCompletion": "on",
+    "git.autofetch": true,
+    "makefile.configureOnOpen": true,
+    "git.confirmSync": false,
+    "files.autoSave": "afterDelay",
+    "workbench.colorTheme": "Moonlight Italic",
+    "gitlens.advanced.messages": {
+        "suppressLineUncommittedWarning": true
+    },
+    "workbench.iconTheme": "eq-material-theme-icons-deepforest",
+    "[c]": {
+        
+        "editor.wordBasedSuggestions": "off",
+        "editor.semanticHighlighting.enabled": true,
+        "editor.stickyScroll.defaultModel": "foldingProviderModel",
+        "editor.suggest.insertMode": "replace"
+    }
+}
