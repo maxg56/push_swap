@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:33:25 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/14 16:30:02 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:05:08 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 # ifdef NULL_STR
 #  define NULL_STR "(null)"
 # endif
-
 typedef struct s_list
 {
 	void			*content;

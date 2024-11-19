@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:02:50 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/18 17:42:31 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:15:32 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ static void	rotate(t_stack **stack)
 	t_stack	*last;
 
 	tmp = *stack;
-	last = ft_lstlast(*stack);
+	last = *stack;
+	while (last->next)
+		last = last->next;
 	*stack = tmp->next;
 	tmp->next = NULL;
 	last->next = tmp;

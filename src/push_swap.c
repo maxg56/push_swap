@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:18:43 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/18 17:49:42 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:25:13 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	push_swap(t_stack **stack_a, t_stack **stack_b)
 {
 	int	len;
 
-	len = ft_lstsize(*stack_a);
+	len = ft_stacksize(*stack_a);
 	if (len <= 3)
-		return (smolr_sort(stack_a));
+		smoll_sort(stack_a);
 	else if (len <= 6)
 		sxe_sort(stack_a, stack_b, len);
 	else
 		big_sort(*stack_a, *stack_b);
 }
 
-void small_sort(t_stack **stack)
+void	smoll_sort(t_stack **stack)
 {
 	int	a;
 	int	b;
@@ -36,9 +36,9 @@ void small_sort(t_stack **stack)
 		return ;
 	if (is_sorted(*stack))
 		return ;
-	a = (*stack)->nb;
-	b = (*stack)->next->nb;
-	c = (*stack)->next->next->nb;
+	a = *(*stack)->nb;
+	b = *(*stack)->next->nb;
+	c = *(*stack)->next->next->nb;
 
 	if (a > b && b > c)
 		(do_sa(*stack), do_rra(stack));
@@ -52,33 +52,33 @@ void small_sort(t_stack **stack)
 		do_rra(stack);
 }
 
-void	sxe_sort(t_list **stack_a, t_list **stack_b, int len)
+void	sxe_sort(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	while (len-- > 3)
 		do_pb(stack_a, stack_b);
-	smolr_sort(stack_a);
-	smolr_sort(stack_b);
+	smoll_sort(stack_a);
+	smoll_sort(stack_b);
 	while (*stack_b)
 	{
-		if (*(int *)(*stack_b)->content < *(int *)(*stack_a)->content)
+		if ((*stack_b)->nb < (*stack_a)->nb)
 			do_pa(stack_a, stack_b);
 		else
 			do_ra(stack_a);
 	}
 }
 
-int	is_sorted(t_list *stack)
+int	is_sorted(t_stack *stack)
 {
 	while (stack->next)
 	{
-		if (stack->content > stack->next->content)
+		if (stack->nb > stack->next->nb)
 			return (0);
 		stack = stack->next;
 	}
 	return (1);
 }
 
-void	big_sort(t_list *stack_a, t_list *stack_b)
+void	big_sort(t_stack *stack_a, t_stack *stack_b)
 {
 	(void)stack_a;
 	(void)stack_b;

@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:25:01 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/18 17:44:57 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:17:35 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static void	swap(t_stack *stack)
 {
 	int	tmp;
 
-	tmp = stack->nb;
-	stack->nb = *(int *)stack->next->nb;
-	stack->next->nb = tmp;
+	tmp = *stack->nb;
+	stack->nb = stack->next->nb;
+	stack->next->nb = &tmp;
 }
 
 void	do_sa(t_stack *stack_a)
