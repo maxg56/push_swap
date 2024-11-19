@@ -3,44 +3,44 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+         #
+#    By: maxence <maxence@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/08 13:59:30 by mgendrot          #+#    #+#              #
-#    Updated: 2024/11/19 16:37:20 by mgendrot         ###   ########.fr        #
+#    Updated: 2024/11/19 22:39:05 by maxence          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Variables
 
-NAME		= libft.a
-NAMETESTS	= tests.out
+NAME        = libft.a
+NAMETESTS   = tests.out
 
-INCLUDES	=	include
+INCLUDE     = include
 
-CC			= cc 
-CFLAGS		= -Wall -Wextra -Werror -I
+CC          = cc 
+CFLAGS      = -Wall -Wextra -Werror -I $(INCLUDE)
 
-RM 			= rm 
-AR			= ar rcs
-MKDIR		= mkdir
+RM          = rm 
+AR          = ar rcs
+MKDIR       = mkdir
 
 # **************************************************************************** #
 #                                   Colors                                     #
 #                                                                              #
 # **************************************************************************** #
-DEF_COLOR   		=   \033[0;39m
-GRAY 				=   \033[0;90m
-RED 				=   \033[0;91m
-GREEN      			=   \033[0;92m
-YELLOW 				=   \033[0;93m
-BLUE        		=   \033[0;94m
-MAGENTA				=	\033[0;95m
-CYAN       			=   \033[0;96m
-WHITE 				=   \033[0;97m
-BOLD 				=   $'\x1b[1m'
-END 				=   $'\x1b[0m'
-TERM_UP				=   \033[1A
-TERM_CLEAR_LINE		=   \033[2K\r
+DEF_COLOR           =   \033[0;39m
+GRAY                =   \033[0;90m
+RED                 =   \033[0;91m
+GREEN               =   \033[0;92m
+YELLOW              =   \033[0;93m
+BLUE                =   \033[0;94m
+MAGENTA	            =   \033[0;95m
+CYAN                =   \033[0;96m
+WHITE               =   \033[0;97m
+BOLD                =   $'\x1b[1m'
+END                 =   $'\x1b[0m'
+TERM_UP             =   \033[1A
+TERM_CLEAR_LINE     =   \033[2K\r
 
 # **************************************************************************** #
 #                                                                              #
@@ -102,22 +102,23 @@ OBJS 		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 #                             progress_update                                  #
 #                                                                              #
 # **************************************************************************** #
+
 TOTAL_FILES      := $(words $(SRC_FILES))
 COMPILED_COUNT    = 0
 
 define progress_update
     @if [ ! -f .compiled_count ]; then \
         echo 0 > .compiled_count; \
-		printf "\n"; \
+        printf "\n"; \
     fi; \
     COMPILED_COUNT=$$(cat .compiled_count); \
     COMPILED_COUNT=$$((COMPILED_COUNT + 1)); \
     echo $$COMPILED_COUNT > .compiled_count; \
     printf "$(TERM_UP)$(TERM_CLEAR_LINE)$(CYAN)Compilation progress: \
-		$$((COMPILED_COUNT * 100 / $(TOTAL_FILES)))%% $(BLUE) ->$(1) $(DEF_COLOR)\n"; \
-	if [ $$COMPILED_COUNT -eq $(TOTAL_FILES) ]; then \
-		rm -f .compiled_count; \
-	fi
+        $$((COMPILED_COUNT * 100 / $(TOTAL_FILES)))%% $(BLUE) ->$(1) $(DEF_COLOR)\n"; \
+    if [ $$COMPILED_COUNT -eq $(TOTAL_FILES) ]; then \
+        rm -f .compiled_count; \
+    fi
 endef
 
 # **************************************************************************** #
@@ -125,8 +126,8 @@ endef
 #                                                                              #
 #                                                                              #
 # **************************************************************************** #
-OBJSF		=	.cache_exists
 
+OBJSF		=	.cache_exists
 
 all:		${NAME}
 

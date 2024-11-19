@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxence <maxence@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:25:01 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/19 16:17:35 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:26:53 by maxence          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static void	swap(t_stack *stack)
 {
 	int	tmp;
 
-	tmp = *stack->nb;
+	tmp = stack->nb;
 	stack->nb = stack->next->nb;
-	stack->next->nb = &tmp;
+	stack->next->nb = tmp;
 }
 
 void	do_sa(t_stack *stack_a)

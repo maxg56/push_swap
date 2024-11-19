@@ -6,7 +6,7 @@
 /*   By: maxence <maxence@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:33:25 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/19 17:05:02 by maxence          ###   ########.fr       */
+/*   Updated: 2024/11/19 22:09:50 by maxence          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@
 # ifdef NULL_STR
 #  define NULL_STR "(null)"
 # endif
+
+# ifndef FALS
+#  define FALS 1
+# endif
+
+# ifndef TROU
+#  define TROU 0
+# endif 
 typedef struct s_list
 {
 	void			*content;

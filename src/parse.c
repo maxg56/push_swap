@@ -6,7 +6,7 @@
 /*   By: maxence <maxence@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:24:22 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/19 17:13:03 by maxence          ###   ########.fr       */
+/*   Updated: 2024/11/19 22:12:48 by maxence          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	isvala(char *str)
 {
 	int	i;
-
+	
 	i = 0;
 	while (str[i] == ' ')
 		i++;
@@ -36,7 +36,7 @@ static int	ismax_min(char *str)
 	long	nb;
 
 	nb = ft_atol(str); 
-	return (nb >= -2147483648 && nb <= 2147483647);
+	return (nb >= INT_MIN && nb <= INT_MAX);
 }
 
 
@@ -63,20 +63,20 @@ static int	notrp(char **str)
 int	parse(char **argv, t_stack **stack_a)
 {
 	int	i;
-	int	*nb;
+	int	nb;
 	t_stack	*new_node;
 
 	i = 1;
 	while (argv[i])
 	{
-		if (isvala(argv[i]) || !ismax_min(argv[i]) || notrp(argv))
-			return (1);
+		if (isvala(argv[i]) || !ismax_min(argv[i]) || !notrp(argv))
+			return (0);
 		nb = ft_atoi(argv[i]);
 		new_node = ft_stacknew(nb);
 		if (!new_node)
-			return (1); 
+			return (0); 
 		ft_stackadd(stack_a, new_node);
 		i++;
 	}
-	return (0);
+	return (1);
 }

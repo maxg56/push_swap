@@ -6,7 +6,7 @@
 /*   By: maxence <maxence@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:57:35 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/19 17:09:56 by maxence          ###   ########.fr       */
+/*   Updated: 2024/11/19 22:41:26 by maxence          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,20 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 	{
-		ft_printf("Error\n");
+		ft_printf("\033[0;91mError\n");
 		return (0);
 	}
-	stack_a = malloc(sizeof(t_stack));
-	stack_b = malloc(sizeof(t_stack)); 
-	if (parse(argv, stack_a))
+	stack_a = NULL;
+	stack_b = NULL;
+	ft_prit_stack(&stack_a, &stack_b); 
+	if (!parse(argv, &stack_a))
 	{
-		ft_printf("Error\n");
+		ft_printf("\033[0;91mError\n");
 		return (0);
 	}
 	ft_prit_stack(&stack_a, &stack_b);
-	push_swap(&stack_a, &stack_b);
-	ft_prit_stack(&stack_a, &stack_b);
+	//push_swap(&stack_a, &stack_b);
+	//ft_prit_stack(&stack_a, &stack_b);
 	ft_stackclear(&stack_a);
 	ft_stackclear(&stack_b);
 	return (0);

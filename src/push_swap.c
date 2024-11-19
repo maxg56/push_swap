@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxence <maxence@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:18:43 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/19 16:25:13 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:18:25 by maxence          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	smoll_sort(t_stack **stack)
 		return ;
 	if (is_sorted(*stack))
 		return ;
-	a = *(*stack)->nb;
-	b = *(*stack)->next->nb;
-	c = *(*stack)->next->next->nb;
+	a = (*stack)->nb;
+	b = (*stack)->next->nb;
+	c = (*stack)->next->next->nb;
 
 	if (a > b && b > c)
 		(do_sa(*stack), do_rra(stack));

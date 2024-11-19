@@ -6,7 +6,7 @@
 /*   By: maxence <maxence@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:36:31 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/19 17:08:21 by maxence          ###   ########.fr       */
+/*   Updated: 2024/11/19 21:53:23 by maxence          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../libft/include/libft.h"
+# include <limits.h>
 
 typedef struct s_stack
 {
@@ -48,13 +49,13 @@ void	sxe_sort(t_stack **stack_a, t_stack **stack_b, int len);
 int		is_sorted(t_stack *stack);
 
 // utils.c
-t_stack	*ft_stacknew(int *nb);
+
 int		ft_stacksize(t_stack *stack);
 void	ft_stackadd(t_stack **lst, t_stack *new);
 void	ft_stackdelone(t_stack *lst);
 void	ft_stackclear(t_stack **lst);
-
+t_stack	*ft_stacknew(int nb);
 // parschque.c
-int		parse(char **argv, t_stack *stack_a);
+int		parse(char **argv, t_stack **stack_a);
 
 #endif
