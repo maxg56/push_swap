@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxence <maxence@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:34:25 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/19 09:51:49 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:07:59 by maxence          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_stacksize(t_stack *stack)
 	return (len);
 }
 
-t_stack	*ft_stacknew(int *nb)
+t_stack	*ft_stacknew(int nb)
 {
 	t_stack	*lst;
 

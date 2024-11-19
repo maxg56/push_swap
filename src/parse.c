@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxence <maxence@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:24:22 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/19 16:41:34 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:13:03 by maxence          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ismax_min(char *str)
 }
 
 
-static int	notrp(char *str)
+static int	notrp(char **str)
 {
 	int	i;
 	int	j;
@@ -51,7 +51,7 @@ static int	notrp(char *str)
 		j = i + 1;
 		while (str[j])
 		{
-			if (ft_atoi(&str[i]) == ft_atoi(&str[j]))
+			if (ft_atoi(str[i]) == ft_atoi(str[j]))
 				return (0);
 			j++;
 		}
@@ -63,21 +63,20 @@ static int	notrp(char *str)
 int	parse(char **argv, t_stack **stack_a)
 {
 	int	i;
-	int	nb;
+	int	*nb;
 	t_stack	*new_node;
 
 	i = 1;
 	while (argv[i])
 	{
-		if (isvala(argv[i]) || !ismax_min(argv[i]) || notrp(argv, i))
+		if (isvala(argv[i]) || !ismax_min(argv[i]) || notrp(argv))
 			return (1);
 		nb = ft_atoi(argv[i]);
 		new_node = ft_stacknew(nb);
 		if (!new_node)
-			return (1); // Gestion d'erreur
+			return (1); 
 		ft_stackadd(stack_a, new_node);
 		i++;
 	}
 	return (0);
 }
-

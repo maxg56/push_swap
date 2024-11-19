@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxence <maxence@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:57:35 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/19 16:03:01 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:09:56 by maxence          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void ft_prit_stack(t_stack **stack_a, t_stack **stack_b)
 
 	while (current_a)
 	{
-		printf(" %d", *(int *)current_a->nb);
+		printf(" %d", current_a->nb);
 		if (len_b == len_a && current_b)
 		{
-			printf(" %d\n", *(int *)current_b->nb);
+			printf(" %d\n", current_b->nb);
 			current_b = current_b->next;
 			len_b--;
 		}
@@ -47,8 +47,8 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (0);
 	}
-	stack_a = NULL;
-	stack_b = NULL; 
+	stack_a = malloc(sizeof(t_stack));
+	stack_b = malloc(sizeof(t_stack)); 
 	if (parse(argv, stack_a))
 	{
 		ft_printf("Error\n");
