@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxence <maxence@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:36:31 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/19 21:53:23 by maxence          ###   ########.fr       */
+/*   Updated: 2024/11/20 13:55:16 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ void	ft_stackclear(t_stack **lst);
 t_stack	*ft_stacknew(int nb);
 // parschque.c
 int		parse(char **argv, t_stack **stack_a);
+
+void	turk_algorithm(t_stack **stack_a, t_stack **stack_b);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxence <maxence@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:18:43 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/19 21:18:25 by maxence          ###   ########.fr       */
+/*   Updated: 2024/11/20 13:55:56 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	push_swap(t_stack **stack_a, t_stack **stack_b)
 	else if (len <= 6)
 		sxe_sort(stack_a, stack_b, len);
 	else
-		big_sort(*stack_a, *stack_b);
+		turk_algorithm(stack_a, stack_b);
 }
 
 void	smoll_sort(t_stack **stack)
@@ -78,9 +78,3 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-void	big_sort(t_stack *stack_a, t_stack *stack_b)
-{
-	(void)stack_a;
-	(void)stack_b;
-	return ;
-}

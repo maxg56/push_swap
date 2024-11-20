@@ -3,30 +3,31 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maxence <maxence@student.42.fr>            +#+  +:+       +#+         #
+#    By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 15:53:44 by mgendrot          #+#    #+#              #
-#    Updated: 2024/11/19 22:45:11 by maxence          ###   ########.fr        #
+#    Updated: 2024/11/20 13:56:10 by mgendrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Variables
 
-LIBFT       = libft/
-
 NAME        = push_swap
 
 INCLUDE     = include
+LIBFT       = libft/
 
 CC          = cc 
 CFLAGS      = -Wall -Wextra -Werror -I $(INCLUDE)
 
 RM          = rm -f
 MKDIR       = mkdir
+
 # **************************************************************************** #
 #                                   Colors                                     #
 #                                                                              #
 # **************************************************************************** #
+
 DEF_COLOR           =   \033[0;39m
 GRAY                =   \033[0;90m
 RED                 =   \033[0;91m
@@ -49,7 +50,7 @@ TERM_CLEAR_LINE     =   \033[2K\r
 
 
 
-SRC_FILES       =   main parse push_swap utils
+SRC_FILES       =   main parse push_swap utils tst
 PRINTERS_FILES  =   Push reverse_rotate rotate swap
 
 # **************************************************************************** #
@@ -60,6 +61,7 @@ PRINTERS_FILES  =   Push reverse_rotate rotate swap
 
 SRC_DIR         = src/
 PRINTERS_DIR    = $(SRC_DIR)/instructions/
+
 SRC             =   $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 SRC_PRINTERS    =   $(addprefix $(PRINTERS_DIR), $(addsuffix .c, $(PRINTERS_FILES)))
 
@@ -105,7 +107,7 @@ all:		$(NAME)
 $(NAME):	$(OBJ) $(OBJ_PRINTERS)
 			@$(MAKE) -C $(LIBFT) all -s
 			@$(CC) $(CFLAGS) $(OBJ) $(OBJ_PRINTERS) -L $(LIBFT) -lft -o $(NAME)
-			@echo  "$(TERM_CLEAR_LINE)(GREEN)push_swap compiled!$(DEF_COLOR)"
+			@echo  "$(TERM_CLEAR_LINE)$(GREEN)push_swap compiled!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 			$(call progress_update,$(notdir $@))
@@ -134,6 +136,7 @@ re:			fclean all
 
 norm:
 			@norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
+
 
 
 .PHONY:		all clean fclean re norm
