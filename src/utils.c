@@ -3,67 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxence <maxence@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 09:34:25 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/19 21:22:17 by maxence          ###   ########.fr       */
+/*   Created: 2024/11/21 12:21:42 by mgendrot          #+#    #+#             */
+/*   Updated: 2024/11/21 13:39:21 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_stacksize(t_stack *stack)
+void	ft_prnit_stack(t_stack **stack_a, t_stack **stack_b)
 {
-	int		len;
-	t_stack	*tmp;
+	t_stack	*current_a;
+	t_stack	*current_b;
+	int		len_a;
+	int		len_b;
 
-	len = 0;
-	tmp = stack;
-	while (tmp)
+	current_a = *stack_a;
+	current_b = *stack_b;
+	len_a = ft_stacksize(current_a);
+	len_b = ft_stacksize(current_b);
+	while (current_a)
 	{
-		len++;
-		tmp = tmp->next;
+		printf(" %d", current_a->value);
+		if (len_b == len_a && current_b)
+		{
+			(printf(" %d\n", current_b->value), len_b--);
+			current_b = current_b->next;
+		}
+		else
+			printf(" \n");
+		current_a = current_a->next;
 	}
-	return (len);
+	printf(" _ _\n a b \n");
 }
 
-t_stack	*ft_stacknew(int nb)
+/* exit_error:
+*   Writes "Error\n" to the standard output after freeing stack a and b.
+*	Exits with standard error code 1.
+*/
+
+int	exit_error(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*lst;
-
-	lst = malloc(sizeof(t_stack));
-	if (!lst)
-		return (NULL);
-	lst->next = NULL;
-	lst->nb = nb;
-	return (lst);
-}
-
-void	ft_stackadd(t_stack **lst, t_stack *new)
-{
-	if (!lst || !new)
-		return ;
-	new->next = *lst;
-	*lst = new;
-}
-
-void	ft_stackdelone(t_stack *lst)
-{
-	if (!lst)
-		return ;
-	free(lst);
-}
-
-void	ft_stackclear(t_stack **lst)
-{
-	t_stack	*tmp;
-
-	if (!lst)
-		return ;
-	while (*lst)
-	{
-		tmp = (*lst)->next;
-		ft_stackdelone(*lst);
-		*lst = tmp;
-	}
+	if (stack_a == NULL || stack_a != NULL)
+		ft_stackclear(stack_a);
+	if (stack_b == NULL || stack_b != NULL)
+		ft_stackclear(stack_b);
+	(write(2, RED, 8), write(2, "Error\n", 6), write(2, DEF_COLOR, 8));
+	return (0);
 }

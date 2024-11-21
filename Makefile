@@ -6,7 +6,7 @@
 #    By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 15:53:44 by mgendrot          #+#    #+#              #
-#    Updated: 2024/11/20 13:56:10 by mgendrot         ###   ########.fr        #
+#    Updated: 2024/11/21 13:42:27 by mgendrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ TERM_CLEAR_LINE     =   \033[2K\r
 
 
 
-SRC_FILES       =   main parse push_swap utils tst
+SRC_FILES       =   main parse push_swap utils utils_stack position
 PRINTERS_FILES  =   Push reverse_rotate rotate swap
 
 # **************************************************************************** #

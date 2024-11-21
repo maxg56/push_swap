@@ -6,58 +6,57 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:57:35 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/20 09:43:05 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:43:14 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_prit_stack(t_stack **stack_a, t_stack **stack_b)
-{
-	t_stack	*current_a;
-	t_stack	*current_b;
-	int		len_a;
-	int		len_b;
+/* is_sorted:
+*	Checks if a stack is sorted.
+*	Returns 0 if the stack is not sorted, 1 if it is sorted.
+*/
 
-	current_a = *stack_a;
-	current_b = *stack_b;
-	len_a = ft_stacksize(current_a);
-	len_b = ft_stacksize(current_b);
-	while (current_a)
+int	is_sorted(t_stack *stack)
+{
+	while (stack->next)
 	{
-		printf(" %d", current_a->nb);
-		if (len_b == len_a && current_b)
-		{
-			(printf(" %d\n", current_b->nb), len_b--);
-			current_b = current_b->next;
-		}
-		else
-			printf(" \n");
-		current_a = current_a->next;
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
 	}
-	printf(" _ _\n a b \n");
+	return (1);
 }
 
-int	main(int argc, char **argv)
+/* push_swap:
+*	Chooses a sorting method depending on the number
+*	of values to be sorted.
+*/
+static void	push_swap(t_stack **stack_a, t_stack **stack_b, int stack_size)
+{
+	if (stack_size == 2 && !is_sorted(*stack_a))
+		do_sa(*stack_a);
+	else if (stack_size == 3)
+		tiny_sort(stack_a);
+	else if (stack_size > 3 && !is_sorted(*stack_a))
+		sort(stack_a, stack_b, stack_size);
+}
+
+
+int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	if (argc < 2)
-	{
-		ft_printf("\033[0;91mError\n");
-		return (0);
-	}
+	if (ac < 2)
+		return (exit_error(NULL, NULL));
 	stack_a = NULL;
 	stack_b = NULL;
-	if (!parse(argv, &stack_a))
-	{
-		ft_printf("\033[0;91mError\n");
-		return (0);
-	}
-	ft_prit_stack(&stack_a, &stack_b);
-	push_swap(&stack_a, &stack_b);
-	ft_prit_stack(&stack_a, &stack_b);
+	if (!parse(av, &stack_a))
+		return (exit_error(&stack_a, &stack_b));
+	ft_prnit_stack(&stack_a, &stack_b);
+	push_swap(&stack_a, &stack_b, ft_stacksize(stack_a));
+	ft_prnit_stack(&stack_a, &stack_b);
 	ft_stackclear(&stack_a);
 	ft_stackclear(&stack_b);
 	return (0);
