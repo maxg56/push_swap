@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxence <maxence@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 16:35:01 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/19 17:05:45 by maxence          ###   ########.fr       */
+/*   Updated: 2024/11/22 11:02:00 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,3 @@ long	ft_atol(const char *str)
 	}
 	return (num * neg);
 }
-	

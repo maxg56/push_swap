@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 12:21:42 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/21 13:39:21 by mgendrot         ###   ########.fr       */
+/*   Created: 2024/11/22 17:00:57 by mgendrot          #+#    #+#             */
+/*   Updated: 2024/11/22 17:02:24 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void	ft_prnit_stack(t_stack **stack_a, t_stack **stack_b)
 		printf(" %d", current_a->value);
 		if (len_b == len_a && current_b)
 		{
-			(printf(" %d\n", current_b->value), len_b--);
+			(ft_printf(" %d\n", current_b->value), len_b--);
 			current_b = current_b->next;
 		}
 		else
-			printf(" \n");
+			ft_printf(" \n");
 		current_a = current_a->next;
 	}
-	printf(" _ _\n a b \n");
+	ft_printf(" _ _\n a b \n");
 }
 
 /* exit_error:
@@ -43,12 +43,12 @@ void	ft_prnit_stack(t_stack **stack_a, t_stack **stack_b)
 *	Exits with standard error code 1.
 */
 
-int	exit_error(t_stack **stack_a, t_stack **stack_b)
+void	exit_error(t_stack **stack_a, t_stack **stack_b)
 {
 	if (stack_a == NULL || stack_a != NULL)
 		ft_stackclear(stack_a);
 	if (stack_b == NULL || stack_b != NULL)
 		ft_stackclear(stack_b);
 	(write(2, RED, 8), write(2, "Error\n", 6), write(2, DEF_COLOR, 8));
-	return (0);
+	exit(1);
 }

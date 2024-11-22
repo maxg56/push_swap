@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:24:22 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/20 09:45:33 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/22 12:04:25 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static int	isvala(char *str)
 	return (str[i] != '\0');
 }
 
-
 static int	ismax_min(char *str)
 {
 	long	nb;
@@ -39,8 +38,7 @@ static int	ismax_min(char *str)
 	return (nb >= INT_MIN && nb <= INT_MAX);
 }
 
-
-static int	notrp(char **str)
+static t_bool	notrp(char **str)
 {
 	int	i;
 	int	j;
@@ -52,31 +50,39 @@ static int	notrp(char **str)
 		while (str[j])
 		{
 			if (ft_atoi(str[i]) == ft_atoi(str[j]))
-				return (0);
+				return (FALSE);
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	return (TRUE);
 }
 
-int	parse(char **argv, t_stack **stack_a)
+int	parse_input(int ac, char **av, t_stack **stack_a)
 {
 	int		i;
 	int		nb;
 	t_stack	*new_node;
+	t_bool	f;
 
 	i = 1;
-	while (argv[i])
+	f = FALSE;
+	if (ac == 2)
 	{
-		if (isvala(argv[i]) || !ismax_min(argv[i]) || !notrp(argv))
+		f = TRUE;
+		av = ft_split(av[1], ' ');
+	}
+	while (av[i])
+	{
+		if (isvala(av[i]) || !ismax_min(av[i]) || !notrp(av))
 			return (0);
-		nb = ft_atoi(argv[i]);
+		nb = ft_atoi(av[i]);
 		new_node = ft_stacknew(nb);
 		if (!new_node)
 			return (0);
-		ft_stackadd(stack_a, new_node);
-		i++;
+		(ft_stackadd(stack_a, new_node), i++);
 	}
+	if (f)
+		free_arr(av);
 	return (1);
 }

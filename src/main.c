@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:57:35 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/21 13:43:14 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:07:50 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	main(int ac, char **av)
 	t_stack	*stack_b;
 
 	if (ac < 2)
-		return (exit_error(NULL, NULL));
+		exit_error(NULL, NULL);
 	stack_a = NULL;
 	stack_b = NULL;
-	if (!parse(av, &stack_a))
-		return (exit_error(&stack_a, &stack_b));
+	if (!parse_input(ac, av, &stack_a))
+		exit_error(&stack_a, &stack_b);
 	ft_prnit_stack(&stack_a, &stack_b);
 	push_swap(&stack_a, &stack_b, ft_stacksize(stack_a));
 	ft_prnit_stack(&stack_a, &stack_b);
