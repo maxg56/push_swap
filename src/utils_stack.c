@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:34:25 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/21 13:23:45 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:37:51 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,41 +29,41 @@ int	ft_stacksize(t_stack *stack)
 
 t_stack	*ft_stacknew(int nb)
 {
-	t_stack	*lst;
+	t_stack	*stak;
 
-	lst = malloc(sizeof(t_stack));
-	if (!lst)
+	stak = malloc(sizeof(t_stack));
+	if (!stak)
 		return (NULL);
-	lst->next = NULL;
-	lst->value = nb;
-	return (lst);
+	stak->next = NULL;
+	stak->value = nb;
+	return (stak);
 }
 
-void	ft_stackadd(t_stack **lst, t_stack *new)
+void	ft_stackadd(t_stack **stak, t_stack *new)
 {
-	if (!lst || !new)
+	if (!stak || !new)
 		return ;
-	new->next = *lst;
-	*lst = new;
+	new->next = *stak;
+	*stak = new;
 }
 
-void	ft_stackdelone(t_stack *lst)
+void	ft_stackdelone(t_stack *stak)
 {
-	if (!lst)
+	if (!stak)
 		return ;
-	free(lst);
+	free(stak);
 }
 
-void	ft_stackclear(t_stack **lst)
+void	ft_stackclear(t_stack **stak)
 {
 	t_stack	*tmp;
 
-	if (!lst)
+	if (!stak)
 		return ;
-	while (*lst)
+	while (*stak)
 	{
-		tmp = (*lst)->next;
-		ft_stackdelone(*lst);
-		*lst = tmp;
+		tmp = (*stak)->next;
+		ft_stackdelone(*stak);
+		*stak = tmp;
 	}
 }

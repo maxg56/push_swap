@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+         #
+#    By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 15:53:44 by mgendrot          #+#    #+#              #
-#    Updated: 2024/11/22 17:05:53 by mgendrot         ###   ########.fr        #
+#    Updated: 2024/11/23 18:56:12 by max_dev          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ TERM_CLEAR_LINE     =   \033[2K\r
 
 
 
-SRC_FILES       =   main parse tiny_sort utils utils_stack position cost
+SRC_FILES       =   main parse tiny_sort utils utils_stack sort
 PRINTERS_FILES  =   Push reverse_rotate rotate swap
 
 # **************************************************************************** #

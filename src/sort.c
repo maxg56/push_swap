@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:15:26 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/22 17:25:07 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:54:49 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 
 void	sort(t_stack **stack_a, t_stack **stack_b)
 {
-	void(t_stack **, t_stack **);
+	(void)stack_a;
+	(void)stack_b;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:24:22 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/22 12:04:25 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/23 19:10:41 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,26 +63,26 @@ int	parse_input(int ac, char **av, t_stack **stack_a)
 	int		i;
 	int		nb;
 	t_stack	*new_node;
-	t_bool	f;
+	t_bool	fre;
 
 	i = 1;
-	f = FALSE;
+	fre = FALSE;
 	if (ac == 2)
 	{
-		f = TRUE;
+		fre = TRUE;
 		av = ft_split(av[1], ' ');
 	}
 	while (av[i])
 	{
 		if (isvala(av[i]) || !ismax_min(av[i]) || !notrp(av))
-			return (0);
+			return (FALSE);
 		nb = ft_atoi(av[i]);
 		new_node = ft_stacknew(nb);
 		if (!new_node)
-			return (0);
+			return (FALSE);
 		(ft_stackadd(stack_a, new_node), i++);
 	}
-	if (f)
+	if (fre)
 		free_arr(av);
-	return (1);
+	return (TROU);
 }

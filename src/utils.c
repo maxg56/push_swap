@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 17:00:57 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/22 17:02:24 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:50:28 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/**
+ * ft_prnit_stack - Prints the elements of stack_a and stack_b.
+ * @stack_a: Pointer to stack A.
+ * @stack_b: Pointer to stack B.
+ *
+ * This function prints the elements of stack_a and stack_b.
+ * The elements of stack_a are printed first, followed by the elements
+ * of stack_b if both stacks have the same length.
+ */
 void	ft_prnit_stack(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*current_a;
@@ -25,7 +34,7 @@ void	ft_prnit_stack(t_stack **stack_a, t_stack **stack_b)
 	len_b = ft_stacksize(current_b);
 	while (current_a)
 	{
-		printf(" %d", current_a->value);
+		ft_printf(" %d", current_a->value);
 		if (len_b == len_a && current_b)
 		{
 			(ft_printf(" %d\n", current_b->value), len_b--);
@@ -34,15 +43,15 @@ void	ft_prnit_stack(t_stack **stack_a, t_stack **stack_b)
 		else
 			ft_printf(" \n");
 		current_a = current_a->next;
+		len_a--;
 	}
 	ft_printf(" _ _\n a b \n");
 }
 
 /* exit_error:
-*   Writes "Error\n" to the standard output after freeing stack a and b.
+*	Writes "Error\n" to the standard output after freeing stack a and b.
 *	Exits with standard error code 1.
 */
-
 void	exit_error(t_stack **stack_a, t_stack **stack_b)
 {
 	if (stack_a == NULL || stack_a != NULL)
@@ -51,4 +60,24 @@ void	exit_error(t_stack **stack_a, t_stack **stack_b)
 		ft_stackclear(stack_b);
 	(write(2, RED, 8), write(2, "Error\n", 6), write(2, DEF_COLOR, 8));
 	exit(1);
+}
+static int ft_strrlen(char **s)
+{
+	int len;
+
+	len = 1;
+	while (s++)
+		len++;
+	return (len);
+}
+
+char	**free_arr(char **split)
+{
+	int i;
+
+	i = ft_strrlen(split);
+	while (i > 0)
+		free(split[--i]);
+	free(split);
+	return (NULL);
 }
