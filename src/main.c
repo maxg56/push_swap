@@ -6,7 +6,7 @@
 /*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:57:35 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/23 19:10:02 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/23 21:06:15 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b, int stack_size)
 	else if (stack_size == 3)
 		tiny_sort(stack_a);
 	else if (stack_size > 3 && !is_sorted(*stack_a))
-		sort(stack_a, stack_b);
+		radix_sort(stack_a, stack_b);
 }
 
 

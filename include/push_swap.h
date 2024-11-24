@@ -6,7 +6,7 @@
 /*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:36:31 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/23 18:56:44 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/23 21:06:17 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_stack
 }	t_stack;
 
 // sort.c
-void	sort(t_stack **stack_a, t_stack **stack_b);
+void 	radix_sort(t_stack **stack_a, t_stack **stack_b);
 void	push_all_save_three(t_stack **stack_a, t_stack **stack_b);
 void	shift_stack(t_stack **stack_a);
 
