@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:36:31 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/23 21:06:17 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/25 18:10:14 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,15 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+typedef struct s_move
+{
+	t_stack	*source;
+	t_stack	*target;
+	int		cost;
+}	t_move;
+
 // sort.c
-void 	radix_sort(t_stack **stack_a, t_stack **stack_b);
+void	sort_stacks(t_stack **stack_a, t_stack **stack_b);
 void	push_all_save_three(t_stack **stack_a, t_stack **stack_b);
 void	shift_stack(t_stack **stack_a);
 
@@ -41,7 +48,19 @@ char	**free_arr(char **split);
 void	tiny_sort(t_stack **stack);
 int 	is_sorted(t_stack *stack);
 
-
+//get
+t_stack	*get_biggest(t_stack *stake);
+t_stack	*get_smallest(t_stack *stack);
+t_stack	*get_smaller(t_stack *stack, int target);
+t_stack	*get_bigger(t_stack *stack, int target);
+int	get_is_minimum(int n, t_stack *stack_b);
+int	get_is_maximum(int n, t_stack *stack_b);
+//cost
+int	ft_lstindex(t_stack *stack, t_stack *ptr);
+int	get_rotation_way(t_stack *target, t_stack *stack);
+int	get_move_cost(t_stack *stack_a, t_stack *source, t_stack *stack_b, t_stack *target);
+int	get_rotation_cost(t_stack *target, t_stack *stack);
+int	get_reverse_rotation_cost(t_stack *target, t_stack *stack);
 // instructions
 void	do_sa(t_stack *stack_a);
 void	do_sb(t_stack *stack_b);
@@ -62,11 +81,10 @@ void	ft_stackdelone(t_stack *lst);
 void	ft_stackclear(t_stack **lst);
 t_stack	*ft_stacknew(int nb);
 // utils.c
-void	ft_prnit_stack(t_stack **stack_a, t_stack **stack_b);
+void	ft_print_stack(t_stack **stack_a, t_stack **stack_b);
 void	exit_error(t_stack **stack_a, t_stack **stack_b);
 
 // parschque.c
-int		parse(char **argv, t_stack **stack_a);
 
 void	turk_algorithm(t_stack **stack_a, t_stack **stack_b);
 

@@ -6,64 +6,101 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:15:26 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/25 13:59:49 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:09:28 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_max_bits(t_stack *stack)
+static void	finalize_a(t_stack **a)
 {
-	int	max;
-	int max_value;
-	t_stack	*temp;
+	t_stack	*target;
 
-	max = 0;
-	max_value = 0;
-	temp = stack;
-	while (temp)
+	target = get_smallest(*a);
+	while (*a != target)
 	{
-		if (temp->value > max)
-			max_value = temp->value;
-		temp = temp->next;
+		if (get_rotation_way(target, *a))
+			do_ra(a);
+		else if (get_rotation_way(target, *a) == 0)
+			do_rra(a);
+		else
+			break ;
 	}
-	while (max_value >> max)
-		max++;
-	return (max);
+	return ;
 }
 
-
-
-void radix_sort(t_stack **stack_a, t_stack **stack_b) 
+static	t_move	update_move(int cost, t_stack *source, t_stack *target)
 {
-	int max_bits;
-	int size;
-	int i;
-	int	j;
-	int num;
+	t_move	move;
 
-	size = ft_stacksize(*stack_a);
-	max_bits = get_max_bits(*stack_a);
-	i = 0;
-	while (i < max_bits)
+	move.cost = cost;
+	move.target = target;
+	move.source = source;
+	return (move);
+}
+
+static t_move	find_best_move(t_stack *src_stack, t_stack *tgt_stack)
+{
+	t_stack	*temp_source;
+	t_stack	*temp_target;
+	t_move	move;
+	int		latest_cost;
+
+	move = update_move(INT_MAX, NULL, NULL);
+	temp_source = src_stack;
+	temp_target = tgt_stack;
+	while (temp_source)
 	{
-		j = 0;
-		while ( j < size)
-		{
-			num = (*stack_a)->value;
-			ft_prnit_stack(stack_a, stack_b);
-			if ((num >> i) & 1)
-				do_ra(stack_a);
-			else
-				do_pb(stack_a, stack_b);
-			j++;
-		}
-		while (*stack_b)
-		{
-			do_pa(stack_b, stack_a);
-			ft_prnit_stack(stack_a, stack_b);
-		}
-		i++;
+		if (get_is_minimum(temp_source->value, tgt_stack))
+			temp_target = get_biggest(tgt_stack);
+		else
+			temp_target = get_smaller(tgt_stack,temp_source->value);
+		latest_cost = get_move_cost(src_stack,
+				temp_source, tgt_stack, temp_target);
+		if (latest_cost < move.cost)
+			move = update_move(latest_cost, temp_source, temp_target);
+		temp_source = temp_source->next;
 	}
+	return (move);
+}
+static	void	fill_b(t_stack **stack_a, t_stack **stack_b, t_move move)
+{
+	while (*stack_a != move.source && *stack_b != move.source)
+	{
+		if (get_rotation_way(move.source, *stack_a) == 1
+			&& get_rotation_way(move.target, *stack_b) == 1)
+			do_rr(stack_a, stack_b);
+		else if (get_rotation_way(move.source, *stack_a) == 0
+			&& get_rotation_way(move.target, *stack_b) == 0)
+			do_rrr(stack_a, stack_b);
+		else
+			break ;
+	}
+	if (get_rotation_way(move.source, *stack_a) == 1)
+		while (*stack_a != move.source)
+			do_ra(stack_a);
+	else
+		while (*stack_a != move.source)
+			do_rra(stack_a);
+	if (get_rotation_way(move.target, *stack_b) == 1)
+		while (*stack_b != move.target)
+			do_rb(stack_b);
+	else
+		while (*stack_b != move.target)
+			do_rrb(stack_b);
+	do_pb(stack_a, stack_b);
+	return ;
+}
+
+void	sort_stacks(t_stack **stack_a, t_stack **stack_b) 
+{
+	do_pb(stack_a, stack_b);
+	do_pb(stack_a, stack_b);
+	while (*stack_a)
+		fill_b(stack_a, stack_b, find_best_move(*stack_a, *stack_b));
+	while (*stack_b)
+		do_pa(stack_a, stack_b);
+	finalize_a(stack_a);
+	return ;
 }
 

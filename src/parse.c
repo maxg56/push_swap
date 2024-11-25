@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:24:22 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/25 15:11:49 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:44:52 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,8 @@ static t_bool	notrp(char **str)
 	return (TRUE);
 }
 
-static t_bool	parse(char **av, t_stack **stack_a)
+static t_bool	parse(int i, char **av, t_stack **stack_a)
 {
-	int		i;
 	int		nb;
 	t_stack	*new_node;
 
@@ -72,27 +71,31 @@ static t_bool	parse(char **av, t_stack **stack_a)
 		new_node = ft_stacknew(nb);
 		if (!new_node)
 			return (FALSE);
-		(ft_stackadd(stack_a, new_node), i++);
+		ft_stackadd(stack_a, new_node);
+		i++;
 	}
-	return (TROU);
+	return (TRUE);
 }
 
 int	parse_input(int ac, char **av, t_stack **stack_a)
 {
-	char **age;
+	int	i;
+	char	**age;
 	t_bool	fre;
 	t_bool	var;
 
+	i = 1;
 	fre = FALSE;
 	if (ac == 2)
 	{
+		i = 0;
 		fre = TRUE;
 		age = ft_split(av[1], ' ');
 	}
 	else
 		age = av;
-	var = parse(age, stack_a);
+	var = parse(i, age, stack_a);
 	if (fre)
-		free_arr(av);
+		free_arr(age);
 	return (var);
 }

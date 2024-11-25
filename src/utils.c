@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 17:00:57 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/23 18:50:28 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/25 15:58:46 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /**
- * ft_prnit_stack - Prints the elements of stack_a and stack_b.
+ * ft_print_stack - Prints the elements of stack_a and stack_b.
  * @stack_a: Pointer to stack A.
  * @stack_b: Pointer to stack B.
  *
@@ -21,7 +21,7 @@
  * The elements of stack_a are printed first, followed by the elements
  * of stack_b if both stacks have the same length.
  */
-void	ft_prnit_stack(t_stack **stack_a, t_stack **stack_b)
+void	ft_print_stack(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*current_a;
 	t_stack	*current_b;
@@ -65,8 +65,8 @@ static int ft_strrlen(char **s)
 {
 	int len;
 
-	len = 1;
-	while (s++)
+	len = 0;
+	while (*s++)
 		len++;
 	return (len);
 }
