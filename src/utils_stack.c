@@ -6,12 +6,15 @@
 /*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:34:25 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/23 18:37:51 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/25 21:27:54 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* ft_stacksize:
+* Returns the size of the stack
+*/
 int	ft_stacksize(t_stack *stack)
 {
 	int		len;
@@ -27,6 +30,9 @@ int	ft_stacksize(t_stack *stack)
 	return (len);
 }
 
+/* ft_stacknew:
+* Creates a new stack element with the given value 
+*/
 t_stack	*ft_stacknew(int nb)
 {
 	t_stack	*stak;
@@ -39,6 +45,9 @@ t_stack	*ft_stacknew(int nb)
 	return (stak);
 }
 
+/* ft_stackadd:
+ * Adds a new element to the top of the stack
+*/
 void	ft_stackadd(t_stack **stak, t_stack *new)
 {
 	if (!stak || !new)
@@ -47,13 +56,19 @@ void	ft_stackadd(t_stack **stak, t_stack *new)
 	*stak = new;
 }
 
-void	ft_stackdelone(t_stack *stak)
+/* ft_stackdelone:
+ * Deletes an element from the stack
+*/
+static void	ft_stackdelone(t_stack *stak)
 {
 	if (!stak)
 		return ;
 	free(stak);
 }
 
+/* ft_stackclear:
+ * Deletes all elements from the stack
+*/
 void	ft_stackclear(t_stack **stak)
 {
 	t_stack	*tmp;
@@ -66,4 +81,6 @@ void	ft_stackclear(t_stack **stak)
 		ft_stackdelone(*stak);
 		*stak = tmp;
 	}
+	free(*stak);
+	*stak = NULL;
 }

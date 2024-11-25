@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   tiny_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:18:43 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/21 13:44:27 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:31:53 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
+/*tiny_sort:
+*	- Sorts a stack of 3 elements or less
+*	- If the stack is already sorted, it does nothing
+*	- If the stack is not sorted, it sorts it with a maximum of 3 operations
+*	- The function is called by sort_stacks
+*/
 void	tiny_sort(t_stack **stack)
 {
 	int	a;

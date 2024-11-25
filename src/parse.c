@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:24:22 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/25 15:44:52 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/25 22:11:41 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	isvala(char *str)
+/*isvala :
+*	Checks if the string is a valid number
+*	- Returns TRUE if the string is a valid number
+*	- Returns FALSE if the string is not a valid number
+*/
+static t_bool	isvala(char *str)
 {
 	int	i;
 
@@ -22,22 +27,36 @@ static int	isvala(char *str)
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	if (!ft_isdigit(str[i]))
-		return (1);
+		return (FALSE);
 	while (ft_isdigit(str[i]))
 		i++;
 	while (str[i] == ' ')
 		i++;
-	return (str[i] != '\0');
+	if (str[i] != '\0')
+		return (FALSE);
+	return (TRUE);
 }
 
-static int	ismax_min(char *str)
+/*ismax_min :
+*	Checks if the number is between INT_MIN and INT_MAX
+*	- Returns TRUE if the number is between INT_MIN and INT_MAX
+*	- Returns FALSE if the number is not between INT_MIN and INT_MAX
+*/
+static t_bool	ismax_min(char *str)
 {
 	long	nb;
 
 	nb = ft_atol(str);
-	return (nb >= INT_MIN && nb <= INT_MAX);
+	if (nb < INT_MIN || nb > INT_MAX)
+		return (FALSE);
+	return (TRUE);
 }
 
+/*notrp :
+*	Checks if there are no repeated numbers in the stack
+*	- Returns TRUE if there are no repeated numbers
+*	- Returns FALSE if there are repeated numbers
+*/
 static t_bool	notrp(char **str)
 {
 	int	i;
@@ -58,6 +77,11 @@ static t_bool	notrp(char **str)
 	return (TRUE);
 }
 
+/*parse :
+*	Parses the input and creates a stack
+*	- Returns TRUE if the input is valid
+*	- Returns FALSE if the input is not valid
+*/
 static t_bool	parse(int i, char **av, t_stack **stack_a)
 {
 	int		nb;
@@ -65,7 +89,7 @@ static t_bool	parse(int i, char **av, t_stack **stack_a)
 
 	while (av[i])
 	{
-		if (isvala(av[i]) || !ismax_min(av[i]) || !notrp(av))
+		if (!isvala(av[i]) || !ismax_min(av[i]) || !notrp(av))
 			return (FALSE);
 		nb = ft_atoi(av[i]);
 		new_node = ft_stacknew(nb);
@@ -77,25 +101,30 @@ static t_bool	parse(int i, char **av, t_stack **stack_a)
 	return (TRUE);
 }
 
-int	parse_input(int ac, char **av, t_stack **stack_a)
+/*parse_input :
+*	Parses the input and creates a stack
+*	- Returns TRUE if the input is valid
+*	- Returns FALSE if the input is not valid
+*/
+t_bool	parse_input(int ac, char **av, t_stack **stack_a)
 {
-	int	i;
+	int		i;
 	char	**age;
-	t_bool	fre;
+	t_bool	free;
 	t_bool	var;
 
 	i = 1;
-	fre = FALSE;
+	free = FALSE;
 	if (ac == 2)
 	{
 		i = 0;
-		fre = TRUE;
+		free = TRUE;
 		age = ft_split(av[1], ' ');
 	}
 	else
 		age = av;
 	var = parse(i, age, stack_a);
-	if (fre)
+	if (free)
 		free_arr(age);
 	return (var);
 }

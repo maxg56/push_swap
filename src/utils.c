@@ -3,24 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 17:00:57 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/25 15:58:46 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:30:41 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/**
- * ft_print_stack - Prints the elements of stack_a and stack_b.
- * @stack_a: Pointer to stack A.
- * @stack_b: Pointer to stack B.
- *
- * This function prints the elements of stack_a and stack_b.
- * The elements of stack_a are printed first, followed by the elements
- * of stack_b if both stacks have the same length.
- */
+/* ft_print_stack:
+* Prints the elements of stack_a and stack_b.
+* The elements of stack_a are printed first, followed by the elements
+* of stack_b if both stacks have the same length.
+*/
 void	ft_print_stack(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*current_a;
@@ -61,6 +57,10 @@ void	exit_error(t_stack **stack_a, t_stack **stack_b)
 	(write(2, RED, 8), write(2, "Error\n", 6), write(2, DEF_COLOR, 8));
 	exit(1);
 }
+
+/* ft_stacksize:
+* Returns the size of the stack.
+*/
 static int ft_strrlen(char **s)
 {
 	int len;
@@ -71,6 +71,9 @@ static int ft_strrlen(char **s)
 	return (len);
 }
 
+/* free_stack:
+* Frees all the elements of the stack.
+*/
 char	**free_arr(char **split)
 {
 	int i;
@@ -80,4 +83,23 @@ char	**free_arr(char **split)
 		free(split[--i]);
 	free(split);
 	return (NULL);
+}
+
+/*ft_stackindex:
+* Returns the index of the stack element.
+* Returns -1 if the element is not found.
+*/
+int	ft_stackindex(t_stack *stack, t_stack *ptr)
+{
+	int	index;
+
+	index = 0;
+	while (stack)
+	{
+		if (stack == ptr)
+			return (index);
+		index++;
+		stack = stack->next;
+	}
+	return (-1);
 }

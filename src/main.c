@@ -3,32 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:57:35 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/25 18:36:27 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/25 22:14:08 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* is_sorted:
-*	Checks if a stack is sorted.
-*	Returns 0 if the stack is not sorted, 1 if it is sorted.
-*/
-
-int	is_sorted(t_stack *stack)
-{
-	while (stack->next)
-	{
-		if (stack->value > stack->next->value)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
-
-/* push_swap:
+/* push_swap :
 *	Chooses a sorting method depending on the number
 *	of values to be sorted.
 */

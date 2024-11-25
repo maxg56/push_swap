@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-
-
 t_stack	*get_biggest(t_stack *stake)
 {
 	int		number;
@@ -34,16 +32,12 @@ t_stack	*get_biggest(t_stack *stake)
 
 t_stack	*get_smallest(t_stack *stack)
 {
-	int	number;
-	int	biggest;
 	t_stack	*biggest_ptr;
 
 	biggest_ptr = stack;
 	while (stack)
 	{
-		number = stack->value;
-		biggest = biggest_ptr->value;
-		if (number < biggest)
+		if (stack->value < biggest_ptr->value)
 			biggest_ptr = stack;
 		stack = stack->next;
 	}
@@ -52,18 +46,16 @@ t_stack	*get_smallest(t_stack *stack)
 
 t_stack	*get_smaller(t_stack *stack, int target)
 {
-	int	current;
 	t_stack	*smaller_ptr;
 
 	smaller_ptr = stack;
 	while (stack)
 	{
-		current = stack->value;
-		if (current <= target)
+		if (stack->value <= target)
 		{
 			if (target < smaller_ptr->value)
 				smaller_ptr = stack;
-			else if (current > smaller_ptr->value)
+			else if (stack->value > smaller_ptr->value)
 				smaller_ptr = stack;
 		}
 		stack = stack->next;
@@ -73,18 +65,16 @@ t_stack	*get_smaller(t_stack *stack, int target)
 
 t_stack	*get_bigger(t_stack *stack, int target)
 {
-	int	current;
 	t_stack	*smaller_ptr;
 
 	smaller_ptr = stack;
 	while (stack)
 	{
-		current = stack->value;
-		if (current >= target)
+		if (stack->value >= target)
 		{
 			if (target > smaller_ptr->value)
 				smaller_ptr = stack;
-			else if (current < smaller_ptr->value)
+			else if (stack->value < smaller_ptr->value)
 				smaller_ptr = stack;
 		}
 		stack = stack->next;
