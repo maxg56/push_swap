@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:55:11 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/24 22:47:19 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/25 15:09:44 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static void	push(t_stack **src, t_stack **dest)
 {
 	t_stack	*tmp;
 
-	if (*src == NULL)
+	if (!src || !dest)
 		return ;
-	tmp = (*src)->next;
-	(*src)->next = *dest;
-	*dest = *src;
-	*src = tmp;
+	tmp = *src;
+	*src = (*src)->next;
+	tmp->next = *dest;
+	*dest = tmp;
 }
 
 void	do_pa(t_stack **stack_a, t_stack **stack_b)

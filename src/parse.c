@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:24:22 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/23 19:10:41 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/25 15:11:49 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,12 @@ static t_bool	notrp(char **str)
 	return (TRUE);
 }
 
-int	parse_input(int ac, char **av, t_stack **stack_a)
+static t_bool	parse(char **av, t_stack **stack_a)
 {
 	int		i;
 	int		nb;
 	t_stack	*new_node;
-	t_bool	fre;
 
-	i = 1;
-	fre = FALSE;
-	if (ac == 2)
-	{
-		fre = TRUE;
-		av = ft_split(av[1], ' ');
-	}
 	while (av[i])
 	{
 		if (isvala(av[i]) || !ismax_min(av[i]) || !notrp(av))
@@ -82,7 +74,25 @@ int	parse_input(int ac, char **av, t_stack **stack_a)
 			return (FALSE);
 		(ft_stackadd(stack_a, new_node), i++);
 	}
+	return (TROU);
+}
+
+int	parse_input(int ac, char **av, t_stack **stack_a)
+{
+	char **age;
+	t_bool	fre;
+	t_bool	var;
+
+	fre = FALSE;
+	if (ac == 2)
+	{
+		fre = TRUE;
+		age = ft_split(av[1], ' ');
+	}
+	else
+		age = av;
+	var = parse(age, stack_a);
 	if (fre)
 		free_arr(av);
-	return (TROU);
+	return (var);
 }

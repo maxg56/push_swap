@@ -3,63 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:15:26 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/23 21:14:17 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/25 13:59:49 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int  get_max_bits(int max) 
-{
-	int bits;
-	
-	bits = 0;
-	while (max > 0)
-	{
-		max >>= 1; 
-		bits++;
-	}
-	return (bits);
-}
-
-static int  find_max(t_stack *stack) 
+static int	get_max_bits(t_stack *stack)
 {
 	int	max;
-	
-	max = stack->value;
-	while (stack) 
+	int max_value;
+	t_stack	*temp;
+
+	max = 0;
+	max_value = 0;
+	temp = stack;
+	while (temp)
 	{
-		if (stack->value > max)
-			max = stack->value;
-		stack = stack->next;
+		if (temp->value > max)
+			max_value = temp->value;
+		temp = temp->next;
 	}
+	while (max_value >> max)
+		max++;
 	return (max);
 }
 
+
+
 void radix_sort(t_stack **stack_a, t_stack **stack_b) 
 {
-    int max = find_max(*stack_a);
-    int max_bits = get_max_bits(max);
-    int size = ft_stacksize(*stack_a); // Nombre total d'éléments
+	int max_bits;
+	int size;
+	int i;
+	int	j;
+	int num;
 
-    for (int i = 0; i < max_bits; i++) {
-        for (int j = 0; j < size; j++) {
-            int num = (*stack_a)->value;
-			ft_prnit_stack(stack_a,stack_b);
-            if ((num >> i) & 1) {
-                do_ra(stack_a); // Si le bit est 1, faire une rotation
-            } else {
-                do_pb(stack_a, stack_b); // Si le bit est 0, pousser dans B
-            }
-        }
-        // Rassembler tous les éléments de B dans A
-        while (ft_stacksize(*stack_b) > 0) {
-            do_pa(stack_b, stack_a);
-			ft_prnit_stack(stack_a,stack_b);
-        }
-    }
+	size = ft_stacksize(*stack_a);
+	max_bits = get_max_bits(*stack_a);
+	i = 0;
+	while (i < max_bits)
+	{
+		j = 0;
+		while ( j < size)
+		{
+			num = (*stack_a)->value;
+			ft_prnit_stack(stack_a, stack_b);
+			if ((num >> i) & 1)
+				do_ra(stack_a);
+			else
+				do_pb(stack_a, stack_b);
+			j++;
+		}
+		while (*stack_b)
+		{
+			do_pa(stack_b, stack_a);
+			ft_prnit_stack(stack_a, stack_b);
+		}
+		i++;
+	}
 }
 

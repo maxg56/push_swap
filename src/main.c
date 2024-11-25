@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:57:35 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/23 21:06:15 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/25 13:45:50 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b, int stack_size)
 		radix_sort(stack_a, stack_b);
 }
 
-
 int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
@@ -52,7 +51,6 @@ int	main(int ac, char **av)
 		exit_error(NULL, NULL);
 	stack_a = NULL;
 	stack_b = NULL;
-	printf("%d", ac);
 	if (parse_input(ac, av, &stack_a))
 		exit_error(&stack_a, &stack_b);
 	ft_prnit_stack(&stack_a, &stack_b);
