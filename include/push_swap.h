@@ -6,7 +6,7 @@
 /*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:36:31 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/25 22:11:52 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/26 04:28:29 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,16 @@ t_stack	*get_smallest(t_stack *stack);
 t_stack	*get_smaller(t_stack *stack, int target);
 t_stack	*get_bigger(t_stack *stack, int target);
 
+//cost
+
+int		get_move_cost(t_stack *stack_a, t_stack *source, t_stack *stack_b, t_stack *target);
+t_bool	get_rotation_way(t_stack *target, t_stack *stack);
+
 //check
 
 t_bool	is_sorted(t_stack *stack);
 t_bool	is_mini(int n, t_stack *stack_b);
 t_bool	is_maxi(int n, t_stack *stack_b);
-
-//cost
-
-int		get_move_cost(t_stack *stack_a, t_stack *source, t_stack *stack_b, t_stack *target);
-t_bool	get_rotation_way(t_stack *target, t_stack *stack);
 
 // utils.c
 
@@ -69,9 +69,6 @@ void	ft_print_stack(t_stack **stack_a, t_stack **stack_b);
 void	exit_error(t_stack **stack_a, t_stack **stack_b);
 char	**free_arr(char **split);
 int		ft_stackindex(t_stack *stack, t_stack *ptr);
-
-// utils_stack.c
-
 int		ft_stacksize(t_stack *stack);
 void	ft_stackadd(t_stack **stack, t_stack *new);
 void	ft_stackclear(t_stack **stack);
@@ -84,11 +81,11 @@ void	do_sb(t_stack *stack_b);
 void	do_ss(t_stack *stack_a, t_stack *stack_b);
 void	do_pa(t_stack **stack_a, t_stack **stack_b);
 void	do_pb(t_stack **stack_a, t_stack **stack_b);
-int		do_ra(t_stack **stack_a);
-int		do_rb(t_stack **stack_b);
-int		do_rr(t_stack **stack_a, t_stack **stack_b);
-int		do_rra(t_stack **stack_a);
-int		do_rrb(t_stack **stack_b);
-int		do_rrr(t_stack **stack_a, t_stack **stack_b);
+void	do_ra(t_stack **stack_a);
+void	do_rb(t_stack **stack_b);
+void	do_rr(t_stack **stack_a, t_stack **stack_b);
+void	do_rra(t_stack **stack_a);
+void	do_rrb(t_stack **stack_b);
+void	do_rrr(t_stack **stack_a, t_stack **stack_b);
 
 #endif

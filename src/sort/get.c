@@ -12,6 +12,9 @@
 
 #include "push_swap.h"
 
+/*get_biggest:
+ * Get the biggest element of the stack
+ */
 t_stack	*get_biggest(t_stack *stake)
 {
 	int		number;
@@ -30,6 +33,9 @@ t_stack	*get_biggest(t_stack *stake)
 	return (biggest_ptr);
 }
 
+/*get_smallest:
+ * Get the smallest element of the stack
+ */
 t_stack	*get_smallest(t_stack *stack)
 {
 	t_stack	*biggest_ptr;
@@ -44,6 +50,9 @@ t_stack	*get_smallest(t_stack *stack)
 	return (biggest_ptr);
 }
 
+/*get_smaller:
+ * Get the smaller element of the stack
+ */
 t_stack	*get_smaller(t_stack *stack, int target)
 {
 	t_stack	*smaller_ptr;
@@ -63,6 +72,9 @@ t_stack	*get_smaller(t_stack *stack, int target)
 	return (smaller_ptr);
 }
 
+/*get_bigger:
+ * Get the bigger element of the stack
+ */
 t_stack	*get_bigger(t_stack *stack, int target)
 {
 	t_stack	*smaller_ptr;

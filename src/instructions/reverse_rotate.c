@@ -3,22 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:10:32 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/18 17:42:01 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/26 04:15:23 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int is_stack_valid(t_stack **stack)
+/*is_stack_valid:
+ * Check if the stack is valid
+ * @param stack: the stack to check
+ * @return: TRUE if the stack is valid, FALSE otherwise
+ */
+static t_bool is_stack_valid(t_stack **stack)
 {
 	if (!stack || !*stack || !(*stack)->next)
-		return (0);
-	return (1);
+		return (FALSE);
+	return (TRUE);
 }
-
+/*reverse_rotate:
+ * Reverse rotate the stack
+ * @param stack: the stack to reverse rotate
+ */
 static void	reverse_rotate(t_stack **stack)
 {
 	t_stack	*tmp;
@@ -43,32 +51,42 @@ static void	reverse_rotate(t_stack **stack)
 	*stack = last;
 }
 
-int	do_rra(t_stack **stack_a)
+/*do_rra:
+ * Reverse rotate the stack a
+ * @param stack_a: the stack a
+ */
+void	do_rra(t_stack **stack_a)
 {
 	if (!is_stack_valid(stack_a))
-		return (0);
+		return ;
 	reverse_rotate(stack_a);
-	ft_putstr_fd("rra\n", 1);
-	return (1);
+	ft_printf("rra\n");
 }
 
-int	do_rrb(t_stack **stack_b)
+/*do_rrb:
+ * Reverse rotate the stack b
+ * @param stack_b: the stack b
+ */
+void do_rrb(t_stack **stack_b)
 {
 	if (!is_stack_valid(stack_b))
-		return (0);
+		return ;
 	reverse_rotate(stack_b);
-	ft_putstr_fd("rrb\n", 1);
-	return (1);
+	ft_printf("rrb\n");
 }
 
-int	do_rrr(t_stack **stack_a, t_stack **stack_b)
+/*do_rrr:
+ * Reverse rotate the stack a and b
+ * @param stack_a: the stack a
+ * @param stack_b: the stack b
+ */
+void	do_rrr(t_stack **stack_a, t_stack **stack_b)
 {
 	if (!is_stack_valid(stack_a) && !is_stack_valid(stack_b))
-		return (0);
+		return ;
 	reverse_rotate(stack_a);
 	reverse_rotate(stack_b);
-	ft_putstr_fd("rrr\n", 1);
-	return (1);
+	ft_printf("rrr\n");
 }
 
 

@@ -1,32 +1,46 @@
 # include "push_swap.h"
 
-static int	handle_ope(char *ope, t_stack **a_check, t_stack **b_check)
+/*handle_ope;
+ * Handle the operation
+ * @param ope: the operation to handle
+ * @param stack_a: the stack a
+ * @param stack_b: the stack b
+ * @return: TRUE if the operation is handled, FALSE otherwise
+ */
+static t_bool	handle_ope(char *ope, t_stack **stack_a, t_stack **stack_b)
 {
 	if (!ope)
-		return (0);
+		return (FALSE);
 	if (ft_strncmp(ope, "pa\n", ft_strlen(ope)) == 0)
-		do_pa(a_check, b_check);
+		do_pa(stack_a, stack_b);
 	if (ft_strncmp(ope, "pb\n", ft_strlen(ope)) == 0)
-		do_pb(a_check, b_check);
+		do_pb(stack_a, stack_b);
 	if (ft_strncmp(ope, "sa\n", ft_strlen(ope)) == 0)
-		do_sa(a_check);
+		do_sa(*stack_a);
 	if (ft_strncmp(ope, "sb\n", ft_strlen(ope)) == 0)
-		do_sb(b_check);
+		do_sb(*stack_b);
+	if (ft_strncmp(ope, "ss\n", ft_strlen(ope)) == 0)
+		do_ss(*stack_a, *stack_b);
 	if (ft_strncmp(ope, "ra\n", ft_strlen(ope)) == 0)
-		do_ra(a_check);
+		do_ra(stack_a);
 	if (ft_strncmp(ope, "rra\n", ft_strlen(ope)) == 0)
-		do_rra(a_check);
+		do_rra(stack_a);
 	if (ft_strncmp(ope, "rb\n", ft_strlen(ope)) == 0)
-		do_rb(b_check);
+		do_rb(stack_b);
 	if (ft_strncmp(ope, "rrb\n", ft_strlen(ope)) == 0)
-		do_rrb(b_check);
+		do_rrb(stack_b);
 	if (ft_strncmp(ope, "rr\n", ft_strlen(ope)) == 0)
-		do_rr(a_check, b_check);
+		do_rr(stack_a, stack_b);
 	if (ft_strncmp(ope, "rrr\n", ft_strlen(ope)) == 0)
-		do_rrr(a_check, b_check);
-	return (1);
+		do_rrr(stack_a, stack_b);
+	return (TRUE);
 }
 
+/*execute_operations:
+ * Execute the operations
+ * @param stack_a: the stack a
+ * @param stack_b: the stack b
+ */
 static void	execute_operations(t_stack **stack_a, t_stack **stack_b)
 {
 	char	*line;

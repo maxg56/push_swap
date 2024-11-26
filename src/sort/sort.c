@@ -6,12 +6,16 @@
 /*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:15:26 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/25 22:11:42 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/26 04:26:06 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*finalize_a:
+ * Finalize the stack a
+ * @param stack_a: the stack a
+ */
 static void	finalize_a(t_stack **stack_a)
 {
 	t_stack	*target;
@@ -28,6 +32,14 @@ static void	finalize_a(t_stack **stack_a)
 	}
 }
 
+/*get_move_cost:
+ * Get the cost of the move
+ * @param src_stack: the source stack
+ * @param src: the source element
+ * @param tgt_stack: the target stack
+ * @param tgt: the target element
+ * @return: the cost of the move
+ */
 static	t_move	*update_move(int cost, t_stack *source, t_stack *target)
 {
 	t_move	*move;
@@ -39,6 +51,14 @@ static	t_move	*update_move(int cost, t_stack *source, t_stack *target)
 	return (move);
 }
 
+/*get_move_cost:
+ * Get the cost of the move
+ * @param src_stack: the source stack
+ * @param src: the source element
+ * @param tgt_stack: the target stack
+ * @param tgt: the target element
+ * @return: the cost of the move
+ */
 static t_move	*find_best_move(t_stack *src_stack, t_stack *tgt_stack)
 {
 	t_stack	*temp_source;
@@ -64,6 +84,12 @@ static t_move	*find_best_move(t_stack *src_stack, t_stack *tgt_stack)
 	return (move);
 }
 
+/*fiexecute_move:
+ * Execute the move
+ * @param stack_a: the stack a
+ * @param stack_b: the stack b
+ * @param move: the move to execute
+ */
 static	void	fiexecute_move(t_stack **stack_a, t_stack **stack_b, t_move *move)
 {
 	while (*stack_a != move->source && *stack_b != move->source)
@@ -93,6 +119,11 @@ static	void	fiexecute_move(t_stack **stack_a, t_stack **stack_b, t_move *move)
 	return ;
 }
 
+/*sort_stacks:
+ * Sort the stacks
+ * @param stack_a: the stack a
+ * @param stack_b: the stack b
+ */
 void	sort_stacks(t_stack **stack_a, t_stack **stack_b) 
 {
 	t_move	*move;
