@@ -6,7 +6,7 @@
 #    By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 15:53:44 by mgendrot          #+#    #+#              #
-#    Updated: 2024/11/26 01:16:28 by max_dev          ###   ########.fr        #
+#    Updated: 2024/11/26 02:06:58 by max_dev          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,30 +47,30 @@ TERM_CLEAR_LINE     =   \033[2K\r
 # **************************************************************************** #
 
 SRC_FILES       =   main
-SRC_UTILS		=	parse utils utils_stack check
+SRC_UTILS       =   parse utils utils_stack check
 SRC_SORT_FILES 	=   tiny_sort sort get cost
 PRINTERS_FILES  =   Push reverse_rotate rotate swap
 SRC_BONS_FILES  =   checker 
 
-SRC_DIR         = src/
-UTILS_DIR       = $(SRC_DIR)utils/
-PRINTERS_DIR    = $(SRC_DIR)instructions/
-SRC_SORT_DIR    = $(SRC_DIR)sort/
-SRC_BONS_DIR    = bonus/
+SRC_DIR         =   src/
+OBJ_DIR         =   obj/
+UTILS_DIR       =   $(SRC_DIR)utils/
+PRINTERS_DIR    =   $(SRC_DIR)instructions/
+SRC_SORT_DIR    =   $(SRC_DIR)sort/
+SRC_BONS_DIR    =   bonus/
 
-SRC_PUSH_SWAP = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES))) \
-                $(addprefix $(UTILS_DIR), $(addsuffix .c, $(SRC_UTILS))) \
-                $(addprefix $(SRC_SORT_DIR), $(addsuffix .c, $(SRC_SORT_FILES))) \
-                $(addprefix $(PRINTERS_DIR), $(addsuffix .c, $(PRINTERS_FILES)))
+SRC_PUSH_SWAP   = $(addprefix $(UTILS_DIR), $(addsuffix .c, $(SRC_UTILS))) \
+                  $(addprefix $(SRC_SORT_DIR), $(addsuffix .c, $(SRC_SORT_FILES))) \
+                  $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES))) \
+                  $(addprefix $(PRINTERS_DIR), $(addsuffix .c, $(PRINTERS_FILES)))
 
-OBJ_PUSH_SWAP = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC_PUSH_SWAP))
+OBJ_PUSH_SWAP   = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC_PUSH_SWAP))
 
-SRC_CHECKER = $(addprefix $(SRC_BONS_DIR), $(addsuffix .c, $(SRC_BONS_FILES))) \
-              $(addprefix $(UTILS_DIR), $(addsuffix .c, $(SRC_UTILS))) \
-              $(addprefix $(PRINTERS_DIR), $(addsuffix .c, $(PRINTERS_FILES)))
+SRC_CHECKER     = $(addprefix $(SRC_BONS_DIR), $(addsuffix .c, $(SRC_BONS_FILES))) \
+                  $(addprefix $(UTILS_DIR), $(addsuffix .c, $(SRC_UTILS))) \
+                  $(addprefix $(PRINTERS_DIR), $(addsuffix .c, $(PRINTERS_FILES)))
 
-OBJ_DIR     = obj/
-OBJ_CHECKER = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC_CHECKER))
+OBJ_CHECKER     = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC_CHECKER))
 
 
 
@@ -108,10 +108,11 @@ $(NAME): $(OBJ_PUSH_SWAP)
 	@$(CC) $(CFLAGS) $(OBJ_PUSH_SWAP) -L $(LIBFT) -lft -o $(NAME)
 	@echo "$(GREEN)push_swap compiled!$(DEF_COLOR)"
 
-$(OBJ_DIR)%.o: %.c | $(OBJF)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 	@mkdir -p $(dir $@)
 	$(call progress_update,$(notdir $@))
 	@$(CC) $(CFLAGS) -c $< -o $@
+
 
 bonus: $(CHECKER)
 
@@ -124,7 +125,7 @@ $(OBJF):
 	@$(MKDIR) -p $(OBJ_DIR)
 
 clean:
-	$(RM) -r $(OBJ_DIR);
+	@$(RM) -r $(OBJ_DIR);
 	@echo "$(RED)push_swap object files cleaned!$(DEF_COLOR)";
 	@$(MAKE) clean -C $(LIBFT) -s
 
