@@ -6,7 +6,7 @@
 #    By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 15:53:44 by mgendrot          #+#    #+#              #
-#    Updated: 2024/11/26 02:06:58 by max_dev          ###   ########.fr        #
+#    Updated: 2024/11/26 02:09:42 by max_dev          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ OBJ_DIR         =   obj/
 UTILS_DIR       =   $(SRC_DIR)utils/
 PRINTERS_DIR    =   $(SRC_DIR)instructions/
 SRC_SORT_DIR    =   $(SRC_DIR)sort/
-SRC_BONS_DIR    =   bonus/
+SRC_BONS_DIR    =   $(SRC_DIR)bonus/
 
 SRC_PUSH_SWAP   = $(addprefix $(UTILS_DIR), $(addsuffix .c, $(SRC_UTILS))) \
                   $(addprefix $(SRC_SORT_DIR), $(addsuffix .c, $(SRC_SORT_FILES))) \
