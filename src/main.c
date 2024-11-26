@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:57:35 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/26 17:26:08 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/26 18:45:22 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 */
 static void	push_swap(t_stack **stack_a, t_stack **stack_b, int stack_size)
 {
-	if (stack_size == 2 && *stack_a != NULL && !is_sorted(*stack_a))
+	if (stack_size == 2 && !is_sorted(*stack_a))
 		do_sa(stack_a, stack_b, TRUE);
 	else if (stack_size == 3)
 		tiny_sort(stack_a);
 	else if (stack_size < 6)
 		sort_stacks_5(stack_a, stack_b);
-	else if (stack_size > 5 && *stack_a != NULL && !is_sorted(*stack_a))
+	else if (stack_size > 5 && !is_sorted(*stack_a))
 		sort_stacks(stack_a, stack_b);
 }
 

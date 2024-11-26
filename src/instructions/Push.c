@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:55:11 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/26 16:52:12 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/26 18:47:24 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static void	push(t_stack **src, t_stack **dest)
 {
 	t_stack	*tmp;
 
-	if (!src || !dest)
-		return ;
 	tmp = *src;
 	*src = (*src)->next;
 	tmp->next = *dest;

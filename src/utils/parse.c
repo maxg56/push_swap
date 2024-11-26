@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:24:22 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/26 15:22:04 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/26 18:33:42 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,10 @@ static t_bool	ismax_min(char *str)
 *	- Returns TRUE if there are no repeated numbers
 *	- Returns FALSE if there are repeated numbers
 */
-static t_bool	notrp(char **str)
+static t_bool	notrp(char **str, int i)
 {
-	int	i;
 	int	j;
 
-	i = 0;
 	while (str[i])
 	{
 		j = i + 1;
@@ -86,10 +84,12 @@ static t_bool	parse(int i, char **av, t_stack **stack_a)
 {
 	int		nb;
 	t_stack	*new_node;
+	int		j;
 
+	j = i;
 	while (av[i])
 	{
-		if (!isvala(av[i]) || !ismax_min(av[i]) || !notrp(av))
+		if (!isvala(av[i]) || !ismax_min(av[i]) || !notrp(av, j))
 			return (FALSE);
 		nb = ft_atoi(av[i]);
 		new_node = ft_stacknew(nb);
