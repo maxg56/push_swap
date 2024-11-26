@@ -56,7 +56,7 @@ int	main(int ac, char **av)
 	stack_b = NULL;
 	if (!parse_input(ac, av, &stack_a))
 		exit_error(&stack_a, &stack_b);
-	p(&stack_a, &stack_b);
+	execute_operations(&stack_a, &stack_b);
 	if (is_sorted(stack_a) && ft_stacksize(stack_b) == 0)
 		ft_printf("OK\n");
 	else
