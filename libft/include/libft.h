@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:33:25 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/25 15:44:33 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:57:33 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-
 # define BUFFER_SIZE 10
 # define FD 1
 # define NULL_STR "(null)"
-
 
 typedef struct s_list
 {
@@ -89,16 +87,15 @@ char	*ft_itoa(int n);
 int		ft_toupper(int car);
 int		ft_tolower(int car);
 
-
 // ft_printf 
-int	ft_print_c_fd(char c, int fd);
-int	ft_print_d_fd(int n, int fd);
-int	ft_print_p_fd(uintptr_t ptr, int fd);
-int	ft_print_pct_fd(int fd);
-int	ft_print_s_fd(char *s, int fd);
-int	ft_print_u_fd(unsigned int n, int fd);
-int	ft_print_x_fd(unsigned int n, int format, int fd);
+int		ft_print_c_fd(char c, int fd);
+int		ft_print_d_fd(int n, int fd);
+int		ft_print_p_fd(uintptr_t ptr, int fd);
+int		ft_print_pct_fd(int fd);
+int		ft_print_s_fd(char *s, int fd);
+int		ft_print_u_fd(unsigned int n, int fd);
+int		ft_print_x_fd(unsigned int n, int format, int fd);
 
-int	ft_printf(const char *str, ...);
+int		ft_printf(const char *str, ...);
 
 #endif 

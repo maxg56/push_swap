@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:55:11 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/26 04:21:58 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:52:12 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,16 @@ static void	push(t_stack **src, t_stack **dest)
  * @param stack_a: the stack a
  * @param stack_b: the stack b
  */
-void	do_pa(t_stack **stack_a, t_stack **stack_b)
+void	do_pa(t_stack **stack_a, t_stack **stack_b, t_bool print)
 {
 	if (stack_b && *stack_b)
 	{
-		push(stack_b, stack_a);	
-		ft_printf("pa\n");
+		push(stack_b, stack_a);
+		if (print)
+			ft_printf("pa\n");
 	}
+	else
+		exit_error(stack_a, stack_b);
 }
 
 /*do_pb:
@@ -48,11 +51,14 @@ void	do_pa(t_stack **stack_a, t_stack **stack_b)
  * @param stack_a: the stack a
  * @param stack_b: the stack b
  */
-void	do_pb(t_stack **stack_a, t_stack **stack_b)
+void	do_pb(t_stack **stack_a, t_stack **stack_b, t_bool print)
 {
 	if (stack_a && *stack_a)
 	{
-		push(stack_a, stack_b);	
-		ft_printf("pb\n");
+		push(stack_a, stack_b);
+		if (print)
+			ft_printf("pb\n");
 	}
+	else
+		exit_error(stack_a, stack_b);
 }

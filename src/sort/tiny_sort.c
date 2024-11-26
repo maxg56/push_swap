@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tiny_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:18:43 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/25 21:31:53 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/26 17:10:17 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,14 @@ void	tiny_sort(t_stack **stack)
 	a = (*stack)->value;
 	b = (*stack)->next->value;
 	c = (*stack)->next->next->value;
-
 	if (a > b && b > c)
-		(do_sa(*stack), do_rra(stack));
+		(do_sa(stack, NULL, TRUE), do_rra(stack, NULL, TRUE));
 	else if (a > b && a > c)
-		do_ra(stack);
+		do_ra(stack, NULL, TRUE);
 	else if (a > b)
-		do_sa(*stack);
+		do_sa(stack, NULL, TRUE);
 	else if (b > c && a < c)
-		(do_sa(*stack), do_ra(stack));
+		(do_sa(stack, NULL, TRUE), do_ra(stack, NULL, TRUE));
 	else if (a < c)
-		do_rra(stack);
+		do_rra(stack, NULL, TRUE);
 }

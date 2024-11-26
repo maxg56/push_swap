@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 17:00:57 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/25 21:30:41 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/26 17:05:15 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	exit_error(t_stack **stack_a, t_stack **stack_b)
 /* ft_stacksize:
 * Returns the size of the stack.
 */
-static int ft_strrlen(char **s)
+static int	ft_strrlen(char **s)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (*s++)
@@ -76,7 +76,7 @@ static int ft_strrlen(char **s)
 */
 char	**free_arr(char **split)
 {
-	int i;
+	int	i;
 
 	i = ft_strrlen(split);
 	while (i > 0)
@@ -85,21 +85,14 @@ char	**free_arr(char **split)
 	return (NULL);
 }
 
-/*ft_stackindex:
-* Returns the index of the stack element.
-* Returns -1 if the element is not found.
-*/
-int	ft_stackindex(t_stack *stack, t_stack *ptr)
+/*is_stack_valid:
+ * Check if the stack is valid
+ * @param stack: the stack to check
+ * @return: TRUE if the stack is valid, FALSE otherwise
+ */
+t_bool	is_stack_valid(t_stack **stack)
 {
-	int	index;
-
-	index = 0;
-	while (stack)
-	{
-		if (stack == ptr)
-			return (index);
-		index++;
-		stack = stack->next;
-	}
-	return (-1);
+	if (!stack || !*stack || !(*stack)->next)
+		return (FALSE);
+	return (TRUE);
 }

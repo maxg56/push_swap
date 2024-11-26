@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:24:22 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/25 22:11:41 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/26 15:22:04 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static t_bool	parse(int i, char **av, t_stack **stack_a)
 		new_node = ft_stacknew(nb);
 		if (!new_node)
 			return (FALSE);
-		ft_stackadd(stack_a, new_node);
+		ft_stackadd_back(stack_a, new_node);
 		i++;
 	}
 	return (TRUE);

@@ -27,8 +27,8 @@ static int	get_do_r_cost(t_stack *target, t_stack *stack)
 }
 
 /*get_do_rr_cost :
-*	- Returns the cost of reverse_rotate the stack to the left to reach the target
-*	- -1 if the target is not in the stack
+*- Returns the cost of reverse_rotate the stack to the left to reach the target
+*- -1 if the target is not in the stack
 */
 static int	get_do_rr_cost(t_stack *target, t_stack *stack)
 {
@@ -63,8 +63,8 @@ t_bool	get_rotation_way(t_stack *target, t_stack *stack)
 *	Returns the cost of moving the target to the source
 *	-1 if the target is not in the stack
 */
-int	get_move_cost(t_stack *stack_a, t_stack *source,
-					 t_stack *stack_b, t_stack *target)
+int	get_move_cost(t_stack *stack_a, t_stack *source
+					, t_stack *stack_b, t_stack *target)
 {
 	int		total_a;
 	int		total_b;

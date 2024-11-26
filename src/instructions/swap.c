@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:25:01 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/26 04:21:33 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/26 17:54:29 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,39 @@
  * Swap the first two elements of the stack
  * @param stack: the stack to swap
  */
-static void	swap(t_stack *stack)
+static void	swap(t_stack **stack)
 {
-	int	tmp;
+	t_stack	*tmp;
 
-	tmp = stack->value;
-	stack->value = stack->next->value;
-	stack->next->value = tmp;
+	tmp = *stack;
+	*stack = (*stack)->next;
+	(*stack)->next = tmp;
 }
 
 /*do_sa:
  * Swap the first two elements of stack a
  * @param stack_a: the stack a
  */
-void	do_sa(t_stack *stack_a)
+void	do_sa(t_stack **stack_a, t_stack **stack_b,	t_bool print)
 {
-	if (!stack_a || !stack_a->next)
-		return ;
+	if (!is_stack_valid(stack_a))
+		exit_error(stack_a, stack_b);
 	swap(stack_a);
-	ft_putstr_fd("sa\n", 1);
+	if (print)
+		ft_printf("sa\n");
 }
 
 /*do_sb:
  * Swap the first two elements of stack b
  * @param stack_b: the stack b
  */
-void	do_sb(t_stack *stack_b)
+void	do_sb(t_stack **stack_a, t_stack **stack_b, t_bool print)
 {
-	if (!stack_b || !stack_b->next)
-		return ;
+	if (!is_stack_valid(stack_b))
+		exit_error(stack_a, stack_b);
 	swap(stack_b);
-	ft_putstr_fd("sb\n", 1);
+	if (print)
+		ft_printf("sb\n");
 }
 
 /*do_ss:
@@ -54,11 +56,12 @@ void	do_sb(t_stack *stack_b)
  * @param stack_a: the stack a
  * @param stack_b: the stack b
  */
-void	do_ss(t_stack *stack_a, t_stack *stack_b)
+void	do_ss(t_stack **stack_a, t_stack **stack_b, t_bool print)
 {
-	if (stack_a && stack_a->next)
-		swap(stack_a);
-	if (stack_b && stack_b->next)
-		swap(stack_b);
-	ft_putstr_fd("ss\n", 1);
+	if (!is_stack_valid(stack_a) && !is_stack_valid(stack_b))
+		exit_error(stack_a, stack_b);
+	swap(stack_a);
+	swap(stack_b);
+	if (print)
+		ft_printf("ss\n");
 }
