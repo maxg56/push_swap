@@ -6,13 +6,14 @@
 #    By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 15:53:44 by mgendrot          #+#    #+#              #
-#    Updated: 2024/11/25 20:38:20 by max_dev          ###   ########.fr        #
+#    Updated: 2024/11/26 01:16:28 by max_dev          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Variables
 
 NAME        = push_swap
+CHECKER     = checker
 
 INCLUDE     = include
 LIBFT       = libft/
@@ -25,7 +26,6 @@ MKDIR       = mkdir
 
 # **************************************************************************** #
 #                                   Colors                                     #
-#                                                                              #
 # **************************************************************************** #
 
 DEF_COLOR           =   \033[0;39m
@@ -43,41 +43,43 @@ TERM_UP             =   \033[1A
 TERM_CLEAR_LINE     =   \033[2K\r
 
 # **************************************************************************** #
-#                                                                              #
 #                                   Sources                                    #
-#                                                                              #
 # **************************************************************************** #
 
-
-
-SRC_FILES       =   main parse tiny_sort utils utils_stack sort get check cost
+SRC_FILES       =   main
+SRC_UTILS		=	parse utils utils_stack check
+SRC_SORT_FILES 	=   tiny_sort sort get cost
 PRINTERS_FILES  =   Push reverse_rotate rotate swap
-
-# **************************************************************************** #
-#                                                                              #
-#                                   OBJS                                       #
-#                                                                              #
-# **************************************************************************** #
+SRC_BONS_FILES  =   checker 
 
 SRC_DIR         = src/
-PRINTERS_DIR    = $(SRC_DIR)/instructions/
+UTILS_DIR       = $(SRC_DIR)utils/
+PRINTERS_DIR    = $(SRC_DIR)instructions/
+SRC_SORT_DIR    = $(SRC_DIR)sort/
+SRC_BONS_DIR    = bonus/
 
-SRC             =   $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
-SRC_PRINTERS    =   $(addprefix $(PRINTERS_DIR), $(addsuffix .c, $(PRINTERS_FILES)))
+SRC_PUSH_SWAP = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES))) \
+                $(addprefix $(UTILS_DIR), $(addsuffix .c, $(SRC_UTILS))) \
+                $(addprefix $(SRC_SORT_DIR), $(addsuffix .c, $(SRC_SORT_FILES))) \
+                $(addprefix $(PRINTERS_DIR), $(addsuffix .c, $(PRINTERS_FILES)))
 
-OBJ_DIR         = obj/
-OBJ             =   $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
-OBJ_PRINTERS    =   $(addprefix $(OBJ_DIR), $(addsuffix .o, $(PRINTERS_FILES)))
+OBJ_PUSH_SWAP = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC_PUSH_SWAP))
+
+SRC_CHECKER = $(addprefix $(SRC_BONS_DIR), $(addsuffix .c, $(SRC_BONS_FILES))) \
+              $(addprefix $(UTILS_DIR), $(addsuffix .c, $(SRC_UTILS))) \
+              $(addprefix $(PRINTERS_DIR), $(addsuffix .c, $(PRINTERS_FILES)))
+
+OBJ_DIR     = obj/
+OBJ_CHECKER = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC_CHECKER))
+
+
 
 # **************************************************************************** #
-#                                                                              #
 #                             progress_update                                  #
-#                                                                              #
 # **************************************************************************** #
 
-TOTAL_FILES     :=   $(words $(SRC) $(SRC_PRINTERS))
-COMPILED_COUNT  =   0
-
+TOTAL_FILES := $(words $(OBJ_PUSH_SWAP) $(OBJ_CHECKER))
+COMPILED_COUNT  = 0
 
 define progress_update
     @if [ ! -f .compiled_count ]; then \
@@ -95,48 +97,49 @@ define progress_update
 endef
 
 # **************************************************************************** #
-#                                                                              #
-#                                                                              #
-#                                                                              #
+#                                   Rules                                      #
 # **************************************************************************** #
 
-OBJF		=	.cache_exists
+all: $(NAME)
+	@echo "$(GREEN)All targets compiled successfully!$(DEF_COLOR)"
 
-all:		$(NAME)
+$(NAME): $(OBJ_PUSH_SWAP)
+	@$(MAKE) -C $(LIBFT) all -s
+	@$(CC) $(CFLAGS) $(OBJ_PUSH_SWAP) -L $(LIBFT) -lft -o $(NAME)
+	@echo "$(GREEN)push_swap compiled!$(DEF_COLOR)"
 
-$(NAME):	$(OBJ) $(OBJ_PRINTERS)
-			@$(MAKE) -C $(LIBFT) all -s
-			@$(CC) $(CFLAGS) $(OBJ) $(OBJ_PRINTERS) -L $(LIBFT) -lft -o $(NAME)
-			@echo  "$(TERM_CLEAR_LINE)$(GREEN)push_swap compiled!$(DEF_COLOR)"
+$(OBJ_DIR)%.o: %.c | $(OBJF)
+	@mkdir -p $(dir $@)
+	$(call progress_update,$(notdir $@))
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-			$(call progress_update,$(notdir $@))
-			@$(CC) $(CFLAGS)  -c $< -o $@
-				
-$(OBJ_DIR)%.o: $(PRINTERS_DIR)%.c | $(OBJF)
-			$(call progress_update,$(notdir $@))
-			@$(CC) $(CFLAGS)  -c $< -o $@
+bonus: $(CHECKER)
 
+$(CHECKER): $(OBJ_CHECKER)
+	@$(MAKE) -C $(LIBFT) all -s
+	@$(CC) $(CFLAGS) $(OBJ_CHECKER) -L $(LIBFT) -lft -o $(CHECKER)
+	@echo "$(GREEN)Checker bonus compiled!$(DEF_COLOR)"
 
 $(OBJF):
-			@$(MKDIR) -p $(OBJ_DIR)
+	@$(MKDIR) -p $(OBJ_DIR)
 
 clean:
-			@$(RM) -rf $(OBJ_DIR)
-			@$(MAKE) clean -C $(LIBFT) -s
-			@echo  "$(RED)push_swap object files cleaned!$(DEF_COLOR)"
+	$(RM) -r $(OBJ_DIR);
+	@echo "$(RED)push_swap object files cleaned!$(DEF_COLOR)";
+	@$(MAKE) clean -C $(LIBFT) -s
 
-fclean:		clean
-			@$(RM) -f $(NAME)
-			@$(MAKE) fclean -C $(LIBFT) -s
-			@echo  "$(CYAN)push_swap executable files cleaned!$(DEF_COLOR)"
+fclean: clean
+	
+	@$(RM) $(NAME);
+	@echo "$(CYAN)push_swap executable cleaned!$(DEF_COLOR)"; 
+	@$(RM) $(CHECKER);
+	@echo "$(CYAN)Checker bonus cleaned!$(DEF_COLOR)";
+	@$(MAKE) fclean -C $(LIBFT) -s
 
-re:			fclean all
-			@echo  "$(GREEN)Cleaned and rebuilt everything for push_swap!$(DEF_COLOR)"
+re: fclean all
+	@echo "$(GREEN)Cleaned and rebuilt everything for push_swap!$(DEF_COLOR)"
 
 norm:
-			@norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
+	@norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
 
-
-
-.PHONY:		all clean fclean re norm
+.PHONY: all clean fclean re norm bonus
