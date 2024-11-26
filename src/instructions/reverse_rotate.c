@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:10:32 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/26 17:54:24 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/26 19:47:07 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,12 @@ static void	reverse_rotate(t_stack **stack)
 	t_stack	*tmp;
 	t_stack	*last;
 	t_stack	*second_last;
-
-	if (!is_stack_valid(stack))
-		return ;
+	
 	tmp = *stack;
 	last = *stack;
-	second_last = NULL;
+	second_last = ft_stacklast(*stack);
 	while (last->next)
-	{
-		second_last = last;
 		last = last->next;
-	}
 	second_last->next = NULL;
 	last->next = tmp;
 	*stack = last;

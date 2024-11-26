@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:57:35 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/26 18:45:22 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/26 19:29:01 by max_dev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	push_swap(t_stack **stack_a, t_stack **stack_b, int stack_size)
 		do_sa(stack_a, stack_b, TRUE);
 	else if (stack_size == 3)
 		tiny_sort(stack_a);
-	else if (stack_size < 6)
+	else if (stack_size > 3 && stack_size < 6)
 		sort_stacks_5(stack_a, stack_b);
 	else if (stack_size > 5 && !is_sorted(*stack_a))
 		sort_stacks(stack_a, stack_b);
@@ -41,6 +41,7 @@ int	main(int ac, char **av)
 		exit_error(&stack_a, &stack_b);
 	push_swap(&stack_a, &stack_b, ft_stacksize(stack_a));
 	ft_stackclear(&stack_a);
-	ft_stackclear(&stack_b);
+	if (stack_b)
+		ft_stackclear(&stack_b);
 	return (0);
 }
