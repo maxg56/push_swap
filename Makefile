@@ -6,7 +6,7 @@
 #    By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 15:53:44 by mgendrot          #+#    #+#              #
-#    Updated: 2024/11/26 15:39:28 by mgendrot         ###   ########.fr        #
+#    Updated: 2024/11/28 12:58:00 by mgendrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ TERM_CLEAR_LINE     =   \033[2K\r
 # **************************************************************************** #
 
 SRC_FILES       =   main
-SRC_UTILS		=	parse utils utils_stack check utils_stack_2
+SRC_UTILS		=	parse utils utils_stack check utils_stack_2 utils_move
 SRC_SORT_FILES 	=   tiny_sort sort get cost sotrt_5
 PRINTERS_FILES  =   Push reverse_rotate rotate swap
 SRC_BONS_FILES  =   checker 

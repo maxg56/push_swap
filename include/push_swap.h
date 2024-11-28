@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:36:31 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/26 17:59:18 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:59:53 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_move
 
 // sort.c
 
-void	tiny_sort(t_stack **stack);
+void	tiny_sort(t_stack **stack, t_stack **stack_b);
 void	sort_stacks_5(t_stack **a, t_stack **b);
 void	sort_stacks(t_stack **stack_a, t_stack **stack_b);
 
@@ -57,9 +57,9 @@ t_stack	*get_bigger(t_stack *stack, int target);
 
 //cost
 
-int		get_move_cost(t_stack *stack_a, t_stack *source,
-			t_stack *stack_b, t_stack *target);
-t_bool	get_rotation_way(t_stack *target, t_stack *stack);
+int		get_move_cost(t_stack **stack_a, t_stack *ource,
+			t_stack **stack_b, t_stack *target);
+t_bool	get_rotation_way(t_stack *target, t_stack **stack);
 
 //check
 
@@ -67,19 +67,23 @@ t_bool	is_sorted(t_stack *stack);
 t_bool	is_mini(int n, t_stack *stack_b);
 t_bool	is_maxi(int n, t_stack *stack_b);
 
-// utils.c
+// utils
 
-void	ft_print_stack(t_stack **stack_a, t_stack **stack_b);
 void	exit_error(t_stack **stack_a, t_stack **stack_b);
 char	**free_arr(char **split);
-int		ft_stackindex(t_stack *stack, t_stack *ptr);
+
+t_move	*nuw_move(int cost, t_stack *source, t_stack *target, t_move *move);
+t_move	*update_move(int cost, t_stack *source, t_stack *target, t_move *move);
+
 int		ft_stacksize(t_stack *stack);
-void	ft_stackadd(t_stack **stack, t_stack *new);
+int		ft_stackindex(t_stack *stack, int value);
 void	ft_stackclear(t_stack **stack);
-t_stack	*ft_stacknew(int nb);
+void	ft_stackadd(t_stack **stack, t_stack *new);
 void	ft_stackadd_back(t_stack **stack, t_stack *new);
-t_stack	*ft_stacklast(t_stack *stack);
+void	ft_print_stack(t_stack **stack_a, t_stack **stack_b);
 t_bool	is_stack_valid(t_stack **stack);
+t_stack	*ft_stacknew(int nb);
+t_stack	*ft_stacklast(t_stack *stack);
 
 // instructions
 

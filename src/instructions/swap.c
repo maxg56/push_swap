@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:25:01 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/26 17:54:29 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:33:33 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ static void	swap(t_stack **stack)
 
 	tmp = *stack;
 	*stack = (*stack)->next;
+	if ((*stack)->next)
+		tmp->next = (*stack)->next;
+	else
+		tmp->next = NULL;
 	(*stack)->next = tmp;
 }
 

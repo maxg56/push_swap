@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:54:44 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/26 17:12:14 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:10:59 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	sort_stacks_5(t_stack **stack_a, t_stack **stack_b)
 
 	while (ft_stacksize(*stack_a) > 3)
 		do_pb(stack_a, stack_b, TRUE);
-	tiny_sort(stack_a);
+	tiny_sort(stack_a, stack_b);
 	while (*stack_b)
 	{
 		if (is_maxi((*stack_b)->value, *stack_a))
@@ -32,9 +32,9 @@ void	sort_stacks_5(t_stack **stack_a, t_stack **stack_b)
 			temp_target = get_bigger(*stack_a, (*stack_b)->value);
 		while (*stack_a != temp_target)
 		{
-			if (get_rotation_way(temp_target, *stack_a))
+			if (get_rotation_way(temp_target, stack_a))
 				do_ra(stack_a, stack_b, TRUE);
-			else if (!get_rotation_way(temp_target, *stack_a))
+			else if (!get_rotation_way(temp_target, stack_a))
 				do_rra(stack_a, stack_b, TRUE);
 		}
 		do_pa(stack_a, stack_b, TRUE);

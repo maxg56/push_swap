@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:17:11 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/26 15:29:55 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:54:31 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_stackadd_back(t_stack **stack, t_stack *new)
 	}
 	tmp = ft_stacklast(*stack);
 	tmp->next = new;
+	new->next = NULL;
 }
 
 /*ft_stackclear:
@@ -46,14 +47,14 @@ t_stack	*ft_stacklast(t_stack *stack)
 * Returns the index of the stack element.
 * Returns -1 if the element is not found.
 */
-int	ft_stackindex(t_stack *stack, t_stack *ptr)
+int	ft_stackindex(t_stack *stack, int value)
 {
 	int	index;
 
 	index = 0;
 	while (stack)
 	{
-		if (stack == ptr)
+		if (stack->value == value)
 			return (index);
 		index++;
 		stack = stack->next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: max_dev <max_dev@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 09:34:25 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/25 21:27:54 by max_dev          ###   ########.fr       */
+/*   Updated: 2024/11/28 12:48:36 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,15 @@
 */
 int	ft_stacksize(t_stack *stack)
 {
-	int		len;
-	t_stack	*tmp;
+	int		size;
 
-	len = 0;
-	tmp = stack;
-	while (tmp)
+	size = 0;
+	while (stack)
 	{
-		len++;
-		tmp = tmp->next;
+		stack = stack->next;
+		size++;
 	}
-	return (len);
+	return (size);
 }
 
 /* ft_stacknew:
@@ -81,6 +79,5 @@ void	ft_stackclear(t_stack **stak)
 		ft_stackdelone(*stak);
 		*stak = tmp;
 	}
-	free(*stak);
 	*stak = NULL;
 }

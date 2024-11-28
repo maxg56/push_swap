@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:02:50 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/26 17:23:18 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:07:09 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@
  * Rotate the stack
  * @param stack: the stack to rotate
  */
+/*rotate:
+ * Rotate the stack
+ * @param stack: the stack to rotate
+ */
 static void	rotate(t_stack **stack)
 {
 	t_stack	*tmp;
 	t_stack	*last;
 
+	if (!stack || !(*stack) || !((*stack)->next))
+		return ;
 	tmp = *stack;
 	last = *stack;
 	while (last->next)
@@ -63,7 +69,7 @@ void	do_rb(t_stack **stack_a, t_stack **stack_b, t_bool print)
  */
 void	do_rr(t_stack **stack_a, t_stack **stack_b, t_bool print)
 {
-	if (!is_stack_valid(stack_a) && !is_stack_valid(stack_b))
+	if (!is_stack_valid(stack_a) || !is_stack_valid(stack_b))
 		exit_error(stack_a, stack_b);
 	rotate(stack_a);
 	rotate(stack_b);
