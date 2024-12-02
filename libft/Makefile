@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maxence <maxence@student.42.fr>            +#+  +:+       +#+         #
+#    By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/08 13:59:30 by mgendrot          #+#    #+#              #
-#    Updated: 2024/11/19 22:39:05 by maxence          ###   ########.fr        #
+#    Updated: 2024/12/02 15:46:28 by mgendrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ FTPRINT       	=   ft_printf ft_print_c_fd ft_print_d_fd ft_print_x_fd \
 					ft_print_s_fd ft_print_p_fd ft_print_u_fd ft_print_pct_fd 
 
 FTGNL_DIR	=	ft_gnl/
-FTGNL		=	get_next_line
+FTGNL		=	get_next_line gnl_utils
 
 FTIS_DIR	=	ft_is/
 FTIS		=	ft_isalnum ft_isalpha ft_isascii ft_isdigit ft_isprint
