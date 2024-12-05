@@ -6,110 +6,74 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:43:11 by etaquet           #+#    #+#             */
-/*   Updated: 2024/12/02 15:41:34 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:36:51 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"	
 
-static char	*nline(char *buffer)
+static char	*function_name(int fd, char *buf, char *backup)
 {
-	int		len;
-	char	*str;
-	int		i;
+	int		read_line;
+	char	*char_temp;
 
-	len = ft_strchr_gnl(buffer, '\n') + 1;
-	if (len <= 0 || !buffer[len - 1])
+	read_line = 1;
+	while (read_line != '\0')
 	{
-		free(buffer);
-		return (NULL);
-	}
-	str = malloc(ft_strlen(buffer + len) + 1);
-	if (!str)
-	{
-		free(buffer);
-		return (NULL);
-	}
-	i = 0;
-	while (buffer[len])
-		str[i++] = buffer[len++];
-	str[i] = '\0';
-	free(buffer);
-	return (str);
-}
-
-static char	*liner(char *line)
-{
-	int		len;
-	char	*str;
-
-	len = ft_strchr_gnl(line, '\n') + 1;
-	if (len <= 0)
-		len = ft_strlen(line);
-	str = malloc(len + 1);
-	if (!str)
-		return (NULL);
-	ft_strlcpy(str, line, len + 1);
-	return (str);
-}
-
-static char	*append_to_buffer(char *buffer, char *ptr)
-{
-	char	*tmp;
-
-	tmp = buffer;
-	buffer = ft_strjoin(buffer, ptr);
-	if (!buffer)
-	{
-		free(tmp);
-		return (NULL);
-	}
-	free(tmp);
-	return (buffer);
-}
-
-static char	*file_read(char *buffer, int fd)
-{
-	char	*ptr;
-	int		nb_read;
-
-	if (!buffer)
-	{
-		buffer = malloc(1);
-		if (!buffer)
-			return (NULL);
-		buffer[0] = '\0';
-	}
-	ptr = malloc(BUFFER_SIZE + 1);
-	if (!ptr)
-		return (NULL);
-	nb_read = read(fd, ptr, BUFFER_SIZE);
-	while (nb_read > 0)
-	{
-		ptr[nb_read] = '\0';
-		buffer = append_to_buffer(buffer, ptr);
-		if (!buffer || ft_strchr(buffer, '\n') >= 0)
+		read_line = read(fd, buf, BUFFER_SIZE);
+		if (read_line == -1)
+			return (0);
+		else if (read_line == 0)
 			break ;
-		nb_read = read(fd, ptr, BUFFER_SIZE);
+		buf[read_line] = '\0';
+		if (!backup)
+			backup = ft_strdup("");
+		char_temp = backup;
+		backup = ft_strjoin(char_temp, buf);
+		free(char_temp);
+		char_temp = NULL;
+		if (ft_strchr (buf, '\n'))
+			break ;
 	}
-	if (nb_read == -1 || (nb_read == 0 && buffer[0] == '\0'))
-		return (free(buffer), free(ptr), NULL);
-	return (free(ptr), buffer);
+	return (backup);
+}
+
+static char	*extract(char *line)
+{
+	size_t	count;
+	char	*backup;
+
+	count = 0;
+	while (line[count] != '\n' && line[count] != '\0')
+		count++;
+	if (line[count] == '\0' || line[1] == '\0')
+		return (0);
+	backup = ft_substr(line, count + 1, ft_strlen(line) - count);
+	if (*backup == '\0')
+	{
+		free(backup);
+		backup = NULL;
+	}
+	line[count + 1] = '\0';
+	return (backup);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
 	char		*line;
+	char		*buf;
+	static char	*backup;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	buffer = file_read(buffer, fd);
-	if (!buffer)
-		return (NULL);
-	line = liner(buffer);
+		return (0);
+	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (0);
+	line = function_name(fd, buf, backup);
+	free(buf);
+	buf = NULL;
 	if (!line)
-		return (free(buffer), buffer = NULL, NULL);
-	buffer = nline(buffer);
+		return (NULL);
+	backup = extract(line);
 	return (line);
 }

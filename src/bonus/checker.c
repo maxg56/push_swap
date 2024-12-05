@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:11:53 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/11/28 13:30:28 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:28:38 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,27 @@ static t_bool	handle_ope(char *ope, t_stack **stack_a, t_stack **stack_b)
 	if (!ope)
 		return (FALSE);
 	else if (ft_strncmp(ope, "pa\n", ft_strlen(ope)) == 0)
-		return (do_pa(stack_a, stack_b, FALSE), TRUE);
+		return (free(ope), do_pa(stack_a, stack_b, FALSE), TRUE);
 	else if (ft_strncmp(ope, "pb\n", ft_strlen(ope)) == 0)
-		return (do_pb(stack_a, stack_b, FALSE), TRUE);
+		return (free(ope), do_pb(stack_a, stack_b, FALSE), TRUE);
 	else if (ft_strncmp(ope, "sa\n", ft_strlen(ope)) == 0)
-		return (do_sa(stack_a, stack_b, FALSE), TRUE);
+		return (free(ope), do_sa(stack_a, stack_b, FALSE), TRUE);
 	else if (ft_strncmp(ope, "sb\n", ft_strlen(ope)) == 0)
-		return (do_sb(stack_a, stack_b, FALSE), TRUE);
+		return (free(ope), do_sb(stack_a, stack_b, FALSE), TRUE);
 	else if (ft_strncmp(ope, "ss\n", ft_strlen(ope)) == 0)
-		return (do_ss(stack_a, stack_b, FALSE), TRUE);
+		return (free(ope), do_ss(stack_a, stack_b, FALSE), TRUE);
 	else if (ft_strncmp(ope, "ra\n", ft_strlen(ope)) == 0)
-		return (do_ra(stack_a, stack_b, FALSE), TRUE);
+		return (free(ope), do_ra(stack_a, stack_b, FALSE), TRUE);
 	else if (ft_strncmp(ope, "rra\n", ft_strlen(ope)) == 0)
-		return (do_rra(stack_a, stack_b, FALSE), TRUE);
+		return (free(ope), do_rra(stack_a, stack_b, FALSE), TRUE);
 	else if (ft_strncmp(ope, "rb\n", ft_strlen(ope)) == 0)
-		return (do_rb(stack_a, stack_b, FALSE), TRUE);
+		return (free(ope), do_rb(stack_a, stack_b, FALSE), TRUE);
 	else if (ft_strncmp(ope, "rrb\n", ft_strlen(ope)) == 0)
-		return (do_rrb(stack_b, stack_b, FALSE), TRUE);
+		return (free(ope), do_rrb(stack_b, stack_b, FALSE), TRUE);
 	else if (ft_strncmp(ope, "rr\n", ft_strlen(ope)) == 0)
-		return (do_rr(stack_a, stack_b, FALSE), TRUE);
+		return (free(ope), do_rr(stack_a, stack_b, FALSE), TRUE);
 	else if (ft_strncmp(ope, "rrr\n", ft_strlen(ope)) == 0)
-		return (do_rrr(stack_a, stack_b, FALSE), TRUE);
+		return (free(ope), do_rrr(stack_a, stack_b, FALSE), TRUE);
 	return (FALSE);
 }
 
@@ -64,12 +64,10 @@ static void	execute_operations(t_stack **stack_a, t_stack **stack_b, t_bool pri)
 	{
 		if (!handle_ope(line, stack_a, stack_b) && line[0] != '\n')
 			break ;
-		free(line);
 		if (pri)
 			ft_print_stack(stack_a, stack_b);
 		line = get_next_line(0);
 	}
-	free(line);
 }
 
 int	main(int ac, char **av)

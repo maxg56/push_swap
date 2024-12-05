@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:33:25 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/12/02 15:51:47 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:57:33 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_list
 
 // get_next_line 
 char	*get_next_line(int fd);
-int		ft_strchr_gnl(const char *s, char c);
 
 // ft_is
 int		ft_isalpha(int car);
