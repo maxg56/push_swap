@@ -6,7 +6,7 @@
 #    By: maxence <maxence@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/08 13:59:30 by mgendrot          #+#    #+#              #
-#    Updated: 2024/11/19 22:39:05 by maxence          ###   ########.fr        #
+#    Updated: 2024/12/05 17:43:36 by maxence          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -133,7 +133,7 @@ all:		${NAME}
 
 ${NAME}:	${OBJS}
 			@${AR} ${NAME} ${OBJS}
-			@echo "$(GREEN)Libft compiled!$(DEF_COLOR)"
+			@printf "$(GREEN)Libft compiled!\n$(DEF_COLOR)"
 
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)
@@ -145,19 +145,19 @@ $(OBJSF):
 clean:
 			@$(RM) -rf $(OBJS_DIR)
 			@$(RM) -f $(OBJSF)
-			@echo  "$(RED)libft objects files cleaned!$(DEF_COLOR)"
+			@printf  "$(RED)libft objects files cleaned!\n$(DEF_COLOR)"
 
 fclean:		clean
 			@${RM} -f ${NAME}
-			@echo  "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
+			@printf  "$(CYAN)libft executable files cleaned!\n$(DEF_COLOR)"
 
 re:			fclean all
-			@echo  "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)"
+			@printf  "$(GREEN)Cleaned and rebuilt everything for libft!\n$(DEF_COLOR)"
 
 
 tests:		all
 			 @${CC} ${CFLAGS} tests/.tests.c tests/main.c -L . -l ft  -o ${NAMETESTS}
-			 @echo -e "$(GREEN)$(BOLD)tests compiled!$(END)$(DEF_COLOR)""
+			 @printf -e "$(GREEN)$(BOLD)tests compiled!$(END)$(DEF_COLOR)""
 			 ./${NAMETESTS}
 			 @rm -f ${NAMETESTS}
 			

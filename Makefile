@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+         #
+#    By: maxence <maxence@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 15:53:44 by mgendrot          #+#    #+#              #
-#    Updated: 2024/11/28 12:58:00 by mgendrot         ###   ########.fr        #
+#    Updated: 2024/12/05 17:41:29 by maxence          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,12 +99,12 @@ endef
 # **************************************************************************** #
 
 all: $(NAME)
-	@echo "$(GREEN)All targets compiled successfully!$(DEF_COLOR)"
+	@printf "$(TERM_CLEAR_LINE)$(GREEN)All targets compiled successfully!\n$(DEF_COLOR)"
 
 $(NAME): $(OBJ)
 	@$(MAKE) -C $(LIBFT) all -s
 	@$(CC) $(CFLAGS) $(OBJ) -L $(LIBFT) -lft -o $(NAME)
-	@echo "$(GREEN)push_swap compiled!$(DEF_COLOR)"
+	@printf "$(GREEN)push_swap compiled!\n$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: %.c | $(OBJF)
 	@mkdir -p $(dir $@)
@@ -116,7 +116,7 @@ bonus: $(CHECKER)
 $(CHECKER): $(OBJ_BONS)
 	@$(MAKE) -C $(LIBFT) all -s
 	@$(CC) $(CFLAGS) $(OBJ_BONS) -L $(LIBFT) -lft -o $(CHECKER)
-	@echo "$(GREEN)Checker bonus compiled!$(DEF_COLOR)"
+	@printf "$(GREEN)Checker bonus compiled!\n$(DEF_COLOR)"
 
 -include $(DEPS)
 
@@ -129,23 +129,23 @@ $(OBJF):
 clean:
 	@if [ -d $(OBJ_DIR) ]; then \
 		$(RM) -r $(OBJ_DIR); \
-		echo "$(RED)push_swap object files cleaned!$(DEF_COLOR)"; \
+		printf "$(RED)push_swap object files cleaned!\n$(DEF_COLOR)"; \
 	fi
 	@$(MAKE) clean -C $(LIBFT) -s
 
 fclean: clean
 	@if [ -f $(NAME) ]; then \
 		$(RM) $(NAME); \
-		echo "$(CYAN)push_swap executable cleaned!$(DEF_COLOR)"; \
+		printf "$(CYAN)push_swap executable cleaned!\n$(DEF_COLOR)"; \
 	fi
 	@if [ -f $(CHECKER) ]; then \
 		$(RM) $(CHECKER); \
-		echo "$(CYAN)Checker bonus cleaned!$(DEF_COLOR)"; \
+		printf "$(CYAN)Checker bonus cleaned!\n$(DEF_COLOR)"; \
 	fi
 	@$(MAKE) fclean -C $(LIBFT) -s
 
 re: fclean all
-	@echo "$(GREEN)Cleaned and rebuilt everything for push_swap!$(DEF_COLOR)"
+	@printf "$(TERM_UP)$(GREEN)Cleaned and rebuilt everything for push_swap!\n$(DEF_COLOR)"
 
 norm:
 	@norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
